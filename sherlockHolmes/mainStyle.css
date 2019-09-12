@@ -1,0 +1,26 @@
+body {
+    font-family: "Lucida console", monospace;
+	background-color: #fffbeb;
+	}
+
+h1 {
+    color: darkblue;
+    border-bottom: 1px solid blue;
+	text-align: center;
+	}
+
+h2 {
+    color: darkred;
+	border-bottom: 1px solid darkblue;
+	}
+
+blockquote {
+	background-color: rgb(252, 233, 192);
+	padding: 1rem;
+	}
+
+.center {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	}
