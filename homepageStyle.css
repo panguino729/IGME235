@@ -1,0 +1,70 @@
+*{
+    background-color: #dcdcdd;
+    /*border: 1px solid red;*/
+
+    font-family: 'Quicksand', sans-serif;
+    /*font-family: 'Raleway', sans-serif;*/
+}
+
+* h1{
+    color: #114b5f;
+}
+
+* h2{
+    border-bottom: 1px solid #46494c;
+    color: #007ea7;
+}
+
+header h1{
+    text-align: center;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#portrait{
+    float: right;
+    width: 35%;
+    margin-left: auto;
+    margin-right: auto;
+    max-width :600px;
+}
+
+.image{
+    padding: 10px;
+}
+
+body{
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+}
+
+#bio{
+    display: flex;
+}
+
+#projects{
+    clear: none;
+}
+
+.links a{
+    display: flex;
+}
+
+a:link{
+    color: #00a8e8;
+}
+
+a:visited{
+    color: #003459;
+}
+
+a:hover{
+    color: #1a936f;
+}
+
+a:active{
+    color: #88d498;
+}
