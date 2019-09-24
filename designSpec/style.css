@@ -1,0 +1,48 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    border: 1px solid red;
+}
+
+img{
+    display: flex;
+    max-width: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#nav, h2{
+    font-family: "Arial Rounded MT Bold", Arial, Helvetica, sans-serif;
+}
+
+#nav{
+    display: grid;
+    border: 1px solid black;
+}
+
+#buttons{
+    display: flex;
+    width: 50%;
+}
+
+#buttons h1{
+    padding: .25em;
+    text-align: center;
+}
+
+/* Maybe use grid */
+.boxes{
+    display: flex;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.boxes div{
+    padding: 1em;
+    background-color: grey;
+}
+
+/* Fix using grid stuff from inclass */
+.boxes img{
+    max-width: 100%;
+}
