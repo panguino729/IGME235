@@ -3,46 +3,165 @@
     border: 1px solid red;
 }
 
-img{
-    display: flex;
-    max-width: auto;
+body {
+    background-color: #e0e2db;
+    width: 100%;
+    grid-template-areas: "nav" "headerImg" "types" "boxes" "footer";
+}
+
+img {
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
 }
 
-#nav, h2{
+/* NAVIGATION BAR */
+
+#nav h2 {
     font-family: "Arial Rounded MT Bold", Arial, Helvetica, sans-serif;
 }
 
-#nav{
+#nav {
     display: grid;
+    grid-area: nav;
+    grid-template-areas: "left buttons";
     border: 1px solid black;
+    background-color: #2e3532;
+    color: #e0e2db;
 }
 
-#buttons{
+#left {
+    grid-area: left;
     display: flex;
-    width: 50%;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-#buttons h1{
-    padding: .25em;
-    text-align: center;
+#title {
+    /* grid-area: title; */
+    margin-left: .1rem;
+    margin-right: auto;
 }
 
-/* Maybe use grid */
-.boxes{
+#buttons {
+    grid-area: buttons;
     display: flex;
+    justify-content: end;
     width: 75%;
     margin-left: auto;
     margin-right: auto;
 }
 
-.boxes div{
-    padding: 1em;
-    background-color: grey;
+#buttons h1 {
+    padding: .25rem;
+    text-align: center;
 }
 
-/* Fix using grid stuff from inclass */
-.boxes img{
-    max-width: 100%;
+#logo {
+    /* grid-area: logo; */
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%
+}
+
+#logo img {
+    width: 30%;
+}
+
+/* HEADER IMAGE */
+
+#headerImg {
+    grid-area: headerImg;
+}
+
+/* STYLES */
+
+#styles {
+    grid-area: types;
+    display: grid;
+    grid-template-areas: "cas resp struc sem";
+    grid-column-gap: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2rem;
+}
+
+#styles div {
+    background-color: #d2d4c8;
+}
+
+#styles h2, #styles p {
+    padding: .5rem;
+}
+
+#styles img {
+    border: 2px solid green;
+    width: 100%;
+    height: auto;
+}
+
+#cascading {
+    grid-area: cas;
+}
+
+#responsive {
+    grid-area: resp;
+}
+
+#structural {
+    grid-area: struc;
+}
+
+#semantic {
+    grid-area: sem;
+}
+
+/* BOXES */
+
+#boxes {
+    grid-area: boxes;
+    display: grid;
+    grid-template-areas: "modern javas";
+    grid-column-gap: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2rem;
+}
+
+#boxes div, #boxes h3, #boxes p {
+    background-color: #bc0c06;
+    color: #d2d4c8;
+    padding: .5rem;
+}
+
+#modern {
+    grid-area: modern;
+}
+
+#javascript {
+    grid-area: javas;
+}
+
+/* FOOTER */
+
+footer {
+    grid-area: footer;
+    display: grid;
+    grid-template-areas: "copyright location";
+    grid-column-gap: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2rem;
+    background-color: #2e3532;
+    color: #e0e2db;
+}
+
+#copyright {
+    grid-area: copyright;
+}
+
+#location {
+    grid-area: location;
+    text-align: right;
 }
