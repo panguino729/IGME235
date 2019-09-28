@@ -1,6 +1,5 @@
 * {
     font-family: Arial, Helvetica, sans-serif;
-    border: 1px solid red;
 }
 
 body {
@@ -11,20 +10,19 @@ body {
 
 /* NAVIGATION BAR */
 
-#nav h2 {
+nav, h2 {
     font-family: "Arial Rounded MT Bold", Arial, Helvetica, sans-serif;
 }
 
-#nav {
+header {
     display: grid;
     grid-area: nav;
     grid-template-areas: "left buttons";
-    min-width: 1f;
     border: 1px solid black;
     background-color: #2e3532;
     color: #e0e2db;
     width: 100%;
-    height: 5rem;
+    height: 6rem;
 }
 
 #left {
@@ -35,8 +33,7 @@ body {
 }
 
 #title {
-    /* grid-area: title; */
-    padding: 0;
+    padding: .5rem 0;
     margin-left: .1rem;
     margin-right: auto;
 }
@@ -45,19 +42,22 @@ body {
     grid-area: buttons;
     display: block;
     width: 100%;
+    height: 100%
 }
 
 ul {
     list-style-type: none;
-    margin: 1rem 0;
+    margin: 0;
     padding: 0;
+    padding-right: 1rem;
     text-align: center;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
+    height: 100%;
 }
 
 li {
-    padding: 0 1rem;
+    padding: 1.5rem 1rem;
     font-size: 2em;
 }
 
@@ -79,10 +79,9 @@ a:active {
 }
 
 #logo {
-    /* grid-area: logo; */
     margin-left: auto;
     margin-right: 0;
-    height: 5rem;
+    height: 6rem;
     object-fit: cover;
 }
 
@@ -114,6 +113,7 @@ a:active {
 
 #styles div {
     background-color: #d2d4c8;
+    max-width: 100%;
 }
 
 #styles h2, #styles p {
@@ -121,8 +121,8 @@ a:active {
 }
 
 #styles img {
-    border: 2px solid green;
     width: 100%;
+    min-height: 258px;
     height: auto;
     object-fit: cover;
 }
@@ -191,3 +191,15 @@ footer {
     grid-area: location;
     text-align: right;
 }
+
+/* @media screen and (max-width: 500px) {
+    #styles {
+        grid-area: types;
+        display: grid;
+        grid-template-areas: "cas resp" "struc sem";
+        grid-column-gap: 2rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 2rem;
+    }
+} */
