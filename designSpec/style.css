@@ -116,7 +116,12 @@ a:active {
     max-width: 100%;
 }
 
-#styles h2, #styles p {
+#styles h2 {
+    padding: .5rem;
+    color: #13295c;
+}
+
+#styles p {
     padding: .5rem;
 }
 
