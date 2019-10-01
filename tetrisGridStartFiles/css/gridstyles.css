@@ -18,7 +18,7 @@ h1.game {
     grid-area: logo;
     width: 500px;
     height: 345px;
-    background: url(/images/tetris-logo.png) no-repeat;
+    background: url(../images/tetris-logo.png) no-repeat;
     text-indent: -9999px;
 }
 
