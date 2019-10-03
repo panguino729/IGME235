@@ -1,0 +1,109 @@
+* {
+    border: 1px solid red;
+    background-color: #dcdcdd;
+    font-family: 'Quicksand', sans-serif;
+}
+
+h1 {
+    color: #114b5f;
+}
+
+h2 {
+    color: #007ea7;
+}
+
+body {
+    width: 85vw;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+}
+
+/* ---------LINKS--------- */
+
+a:link{
+    color: #00a8e8;
+}
+
+a:visited{
+    color: #003459;
+}
+
+a:hover{
+    color: #88d498;
+}
+
+a:active{
+    color: #1a936f;
+}
+
+/* ---------HEADER--------- */
+
+/* -----TITLE----- */
+h1.title {
+    text-align: center;
+    font-weight: bold;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* -----NAV----- */
+
+.menu {
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+}
+
+ul.menu {
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.menu a {
+    display: block;
+    background: #dcdcdd;
+    padding: 10px;
+    text-decoration: none;
+}
+
+.menu li {
+    width: 24.87%;
+}
+
+.menu a:hover {
+    background: #114b5f;
+}
+
+ul.menu ul li {
+    width: 100%;
+}
+
+ul.menu ul {
+    display: none;
+}
+
+ul.menu li:hover ul {
+    display: flex;
+}
+
+/* ---------MAIN--------- */
+
+h2.info {
+    font-weight: bold;
+}
+
+div.info {
+    width: 100%;
+}
+
+.image {
+    float: right;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
