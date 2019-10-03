@@ -1,5 +1,5 @@
 * {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     background-color: #dcdcdd;
     font-family: 'Quicksand', sans-serif;
 }
@@ -10,6 +10,11 @@ h1 {
 
 h2 {
     color: #007ea7;
+    border-bottom: 1px solid #46494c;
+}
+
+h3 {
+    color: #1985a1;
 }
 
 body {
@@ -19,27 +24,32 @@ body {
     padding: 10px;
 }
 
+footer {
+    border-top: 1px solid #464946;
+}
+
 /* ---------LINKS--------- */
 
-a:link{
+a:link {
     color: #00a8e8;
 }
 
-a:visited{
+a:visited {
     color: #003459;
 }
 
-a:hover{
-    color: #88d498;
+a:hover {
+    color: #1a936f;
 }
 
-a:active{
+a:active {
     color: #1a936f;
 }
 
 /* ---------HEADER--------- */
 
 /* -----TITLE----- */
+
 h1.title {
     text-align: center;
     font-weight: bold;
@@ -54,9 +64,6 @@ h1.title {
     width: 100%;
     text-align: center;
     font-weight: bold;
-}
-
-ul.menu {
     list-style: none;
     margin: 0 auto;
     padding: 0;
@@ -77,6 +84,7 @@ ul.menu {
 
 .menu a:hover {
     background: #114b5f;
+    color: #88d498;
 }
 
 ul.menu ul li {
@@ -85,6 +93,20 @@ ul.menu ul li {
 
 ul.menu ul {
     display: none;
+}
+
+/* Do something so nav bar stacks smaller than 700px */
+
+@media screen and (max-width: 700px) {
+    .menu > li {
+        flex-basis: 50%;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .menu > li {
+        flex-basis: 100%;
+    }
 }
 
 ul.menu li:hover ul {
@@ -101,9 +123,52 @@ div.info {
     width: 100%;
 }
 
-.image {
-    float: right;
+.info img {
     max-width: 100%;
+}
+
+.image img {
+    display: block;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1em;
+}
+
+@media screen and (min-width: 1000px) {
+    .image {
+        float: right;
+    }
+}
+
+#screenshots figure {
+    width: 30%;
+    text-align: center;
+    font-style: italic;
+    font-size: smaller;
+    text-indent: 0;
+    border: thin #c5c3c6 solid;
+    margin: 0.5em;
+    padding: 0.5em;
+}
+
+div.imgblock {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+/* -----GAME----- */
+
+.game div {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+#gameblock img {
+    max-width: 100%;
+    display: block;
     margin-left: auto;
     margin-right: auto;
 }
