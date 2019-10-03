@@ -26,10 +26,10 @@ The player will be able to choose what rooms to go to. They will then be able to
 
 Screenshots
 ---
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "NetHack gameplay")
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "NetHack gameplay")
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Hunt the Wumpus instructions and gameplay")
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Hung the Wumpus gameplay")
+![alt text](https://github.com/panguino729/IGME235/blob/master/project1/media/nethackDos.png "NetHack gameplay")
+![alt text](https://github.com/panguino729/IGME235/blob/master/project1/media/nethackDosGame.png "NetHack gameplay")
+![alt text](https://github.com/panguino729/IGME235/blob/master/project1/media/wumpusMainframe.png "Hunt the Wumpus instructions and gameplay")
+![alt text](https://github.com/panguino729/IGME235/blob/master/project1/media/wumpusMainframeGame.png "Hung the Wumpus gameplay")
 
 About the Developer
 ---
