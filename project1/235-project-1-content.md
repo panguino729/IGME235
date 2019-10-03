@@ -2,7 +2,7 @@
 
 Concept
 ---
-It's Hunt the WUmpus but your goal is to find the keys to escape the dungeon.
+It's Hunt the Wumpus but your goal is to find travel through the different rooms to locate the keys to escape the dungeon. While traveling through the dungeon, you will come across enemies, traps, and treasures.
 
 Genre
 ---
@@ -14,11 +14,11 @@ Desktop Only.
 
 Story
 ---
-You get trapped in the dungeon a monster lives in. You must find the keys in order to escape alive.
+You are out exploring when you get trapped in the rumored dungeon that no one has come out of alive. Tales tell of a monster that lives in the deepest part of the dungeon. When you get trapped, you awaken it. You must find the keys in order to escape the dungeon alive before the monster kills you.
 
 Esthetics
 ---
-This game will be text-based so there will be no images. The sound will be 8-bit.
+This game will be text-based so there will be no images but it will make use of characters/symbols. The sound will be 8-bit.
 
 Gameplay
 ---
