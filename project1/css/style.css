@@ -73,7 +73,7 @@ h1.title {
 
 .menu a {
     display: block;
-    background: #dcdcdd;
+    background: #c5c3c6;
     padding: 10px;
     text-decoration: none;
 }
@@ -95,8 +95,6 @@ ul.menu ul {
     display: none;
 }
 
-/* Do something so nav bar stacks smaller than 700px */
-
 @media screen and (max-width: 700px) {
     .menu > li {
         flex-basis: 50%;
@@ -111,6 +109,11 @@ ul.menu ul {
 
 ul.menu li:hover ul {
     display: flex;
+}
+
+.current a{
+    background: #114b5f;
+    color: #88d498;
 }
 
 /* ---------MAIN--------- */
