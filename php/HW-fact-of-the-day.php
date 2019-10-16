@@ -12,8 +12,8 @@
 
 <body>
     <main>
-        <h1>Random Quote of The Day</h1>
-        <p>Reload this page to recieve a new random quote</p>
+        <h1>Quote of The Day</h1>
+        <p>Different quote for each day of the week</p>
 
         <div class="info" id="quote">
             <?php
