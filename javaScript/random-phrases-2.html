@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="css/random-phrases-2-style.css">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+
+    <title>Memorable Video Game Quotes</title>
+</head>
+
+<body>
+    <header>
+        <h1>Memorable Video Game Quotes</h1>
+    </header>
+
+    <main>
+        <div id="quote">
+
+        </div>
+        <div class="button" id="newQuote">
+            <button type="button">New Quote</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>Katarina Tretter</p>
+    </footer>
+</body>
+
+<script>
+    "use strict";
+
+    //Array of Quotes
+    let quotes = ['"War. War never changes" - Fallout', '"The cake is a lie" - Portal', '"You have died of dysentery" - Oregon Trail', '"Stay awhile and listen" - Diablo', '"A man chooses! A slave obeys!" - BioShock', '"You Have Died" - Dark Souls', '"I\'m-a-Wario! I\'ma gonna win!" - Mario Cart 64', '“This is your fault. I’m going to kill you. And all the cake is gone. You don’t even care, do you?” - Portal', '"It\'s super effective!" - Pokemon', '"Wakka wakka wakka" - Pac-Man', '"HADOUKEN!" - Street Fighter II'];
+
+    let quote = document.body.querySelector("#quote");
+
+    //A random quote from the array
+    let q = quotes[Math.floor(Math.random() * Math.floor(quotes.length))];
+
+    //Setting quote inside main
+    let quoteElem = document.createElement("p");
+    quoteElem.innerHTML = q;
+    document.body.querySelector("#quote").appendChild(quoteElem);
+
+    //Button
+    let quoteButton = document.body.querySelector("#newQuote");
+
+    //Choose a new random quote
+    function displayQuote() {
+        q = quotes[Math.floor(Math.random() * Math.floor(quotes.length))];
+        document.body.querySelector("#quote p").innerHTML = q;
+    }
+
+    //New quote when button is clicked
+    quoteButton.onclick = displayQuote;
+
+</script>
+
+</html>
