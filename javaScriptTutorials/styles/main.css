@@ -1,5 +1,6 @@
 * {
-    font-family: verdana, tahoma, sans-serif;
+    font-family: 'Montserrat', verdana, tahoma, sans-serif;
+    border: 1px solid red;
 }
 
 header {
@@ -65,12 +66,12 @@ button {
 }
 
 button.green {
-    border-color: #8fc800;
-    background: #8fc800;
-    background: linear-gradient(top, #8fc800 0%, #438c00 100%);
+    border-color: rgb(0, 169, 221);
+    background: rgb(0, 169, 221);
 }
 
 button:hover {
+    border-color: #8fDD00;
     background: #8fDD00;
 }
 
@@ -84,6 +85,6 @@ button:focus {
 }
 
 .widgets {
-    margin-top: 1em;
-    margin-bottom: 1em;
+    margin: 1em auto auto 1em;
+    text-align: center;
 }
