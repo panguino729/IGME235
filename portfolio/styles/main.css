@@ -1,0 +1,175 @@
+* {
+    border: 1px solid red;
+    background-color: white;
+    font-family: 'Quicksand', sans-serif;
+}
+
+h1 {
+    color: #114b5f;
+}
+
+h2 {
+    color: #007ea7;
+    border-bottom: 1px solid #46494c;
+}
+
+h3 {
+    color: #1985a1;
+}
+
+body {
+    width: 85vw;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+}
+
+footer {
+    border-top: 1px solid #464946;
+}
+
+/* ---------LINKS--------- */
+
+a:link {
+    color: #00a8e8;
+}
+
+a:visited {
+    color: #003459;
+}
+
+a:hover {
+    color: #1a936f;
+}
+
+a:active {
+    color: #1a936f;
+}
+
+/* ---------HEADER--------- */
+
+/* -----TITLE----- */
+
+h1.title {
+    text-align: center;
+    font-weight: bold;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* -----NAV----- */
+nav {
+    margin: 5px;
+}
+
+.menu {
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.menu a {
+    display: block;
+    background: #dcdcdd;
+    padding: 10px;
+    text-decoration: none;
+}
+
+.menu li {
+    width: 24.87%;
+}
+
+.menu a:hover {
+    background: #114b5f;
+    color: #88d498;
+}
+
+ul.menu ul li {
+    width: 100%;
+}
+
+ul.menu ul {
+    display: none;
+}
+
+@media screen and (max-width: 700px) {
+    .menu>li {
+        flex-basis: 50%;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .menu>li {
+        flex-basis: 100%;
+    }
+}
+
+ul.menu li:hover ul {
+    display: flex;
+}
+
+/* ---------MAIN--------- */
+
+h2.info {
+    font-weight: bold;
+}
+
+div.info {
+    width: 100%;
+}
+
+.info img {
+    max-width: 100%;
+}
+
+.image img {
+    display: block;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1em;
+}
+
+@media screen and (min-width: 1000px) {
+    .image {
+        float: right;
+    }
+}
+
+/* #screenshots figure {
+    width: 30%;
+    text-align: center;
+    font-style: italic;
+    font-size: smaller;
+    text-indent: 0;
+    border: thin #c5c3c6 solid;
+    margin: 0.5em;
+    padding: 0.5em;
+}
+
+div.imgblock {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+/* -----GAME----- */
+
+.game div {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+#gameblock img {
+    max-width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
