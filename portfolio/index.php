@@ -163,18 +163,18 @@
             }
 
             // #7 - if they know what 2+2 is, send the message
-            if (intval($human) == 4) {
+            // if (intval($human) == 4) {
 
-                // #8 - mail returns false if the mail can't be sent
-                $sent = mail($to, $subject, $message, $headers);
-                if ($sent) {
-                    echo "<p><b>You sent:</b> $message</p>";
-                } else {
-                    echo "<p>Mail not sent!</p>";
-                }
-            } else {
-                echo "<p>You are either a 'bot, or bad at arithmetic!</p>";
-            }
+            //     // #8 - mail returns false if the mail can't be sent
+            //     $sent = mail($to, $subject, $message, $headers);
+            //     if ($sent) {
+            //         echo "<p><b>You sent:</b> $message</p>";
+            //     } else {
+            //         echo "<p>Mail not sent!</p>";
+            //     }
+            // } else {
+            //     echo "<p>You are either a 'bot, or bad at arithmetic!</p>";
+            // }
         }
 
         // #9 - this handy helper function is very necessary whenever
