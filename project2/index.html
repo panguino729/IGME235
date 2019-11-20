@@ -1,16 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <link rel="stylesheet" type="text/css" href="styles/main.css">
-    <script></script>
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="scripts/dogScript.js"></script>
+
     <title>Dogs</title>
 </head>
+
 <body>
-    
+    <header>
+        <h1>Dog Finder</h1>
+    </header>
+
+    <p>Search Term -&gt; <input id="searchterm" type="text" size="20" maxlength="20" autofocus value="not used" /></p>
+    <p><button type="button" id="search" class="green">Search!</button></p>
+    <p id="debug"></p>
+    <hr>
+    <h2>Results</h2>
+    <div id="content">
+        <p>No data yet!</p>
+    </div>
+
 </body>
+
 </html>
