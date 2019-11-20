@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <script src="jquery-3.4.1.min.js"></script>
+    <script>
+        "use strict"
+
+        let baseAPI = "https://www.amiiboapi.com/api/amiibo/";
+
+        window.onload = function () {
+            $("#btnSearch").on("click", getByName);
+        };
+
+        function getByName() {
+            let nm = $("#name").val();
+            let url = baseAPI + "?name=" + nm;
+
+            console.log(url);
+
+            $.ajax({
+                type: "GET",
+                url: url,
+                success: function (data) {
+                    console.log(data);
+                    doStuffWithData(data);
+                },
+                error: function (err) {
+                    console.error(err.responseText);
+                }
+            });
+        };
+
+        function doStuffWithData(data) {
+            //If thing that comes back is a string, need parse, if else, just use it
+            
+        }
+
+    </script>
+
+    <title>Amiibo</title>
+
+</head>
+
+<body>
+    Name: <input type="text" name="name" id="name">
+    <button id="btnSearch">Search</button>
+</body>
+
+</html>
