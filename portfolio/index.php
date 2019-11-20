@@ -17,7 +17,7 @@
     <title>Katarina Tretter</title>
 </head>
 
-<body data-spy="scroll" data-target="#navigationBar">
+<body>
 
     <nav class="navbar navbar-expand-sm bg-light justify-content-center" id="navigationBar">
         <a class="navbar-brand" href="#">Katarina Tretter</a>
@@ -70,24 +70,24 @@
         <!-- The Slideshow -->
         <div class="carousel-inner" role="listbox">
             <div class="carousel-item active">
-                <img class="d-block img-fluid" src="images/thomas-bjornstad-462980-unsplash.jpg" alt="First slide">
+                <img class="d-block img-fluid" src="images/guantletUI.png" alt="Gauntlet Remake">
                 <div class="carousel-caption d-none d-md-block">
-                    <h3>Project 1</h3>
-                    <p>Filler Image</p>
+                    <h3>Gauntlet Remake</h3>
+                    <p>Space themed Guantlet remake - Characters, GUI</p>
                 </div>
             </div>
             <div class="carousel-item">
-                <img class="d-block img-fluid" src="images/stefan-stefancik-105376-unsplash.jpg" alt="Second slide">
+                <img class="d-block img-fluid" src="images/stefan-stefancik-105376-unsplash.jpg" alt="Hat Quest">
                 <div class="carousel-caption d-none d-md-block">
-                    <h3>Project 2</h3>
-                    <p>Filler image</p>
+                    <h3>Sakana</h3>
+                    <p>Japanese style fly fishing in VR - Sound, Lantern</p>
                 </div>
             </div>
             <div class="carousel-item">
-                <img class="d-block img-fluid" src="images/sergey-pesterev-1471103-unsplash.jpg" alt="Third slide">
+                <img class="d-block img-fluid" src="images/bringMeTheHatsGameplay.PNG" alt="Third slide">
                 <div class="carousel-caption d-none d-md-block">
-                    <h3>Project 3</h3>
-                    <p>Filler image</p>
+                    <h3>Hat Quest</h3>
+                    <p>Rougue like turn based combat - GUI, Art</p>
                 </div>
             </div>
         </div>
@@ -196,7 +196,8 @@
     </div>
 
     <!-- ----- BOOTSTRAP----- -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="js/main.js"></script>
