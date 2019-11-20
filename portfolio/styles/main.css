@@ -1,7 +1,9 @@
 * {
-    border: 1px solid red;
-    background-color: white;
     font-family: 'Quicksand', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 h1 {
@@ -59,43 +61,32 @@ h1.title {
 }
 
 /* -----NAV----- */
-nav {
-    margin: 5px;
+#navigationBar{
+    z-index: 500;
 }
 
-.menu {
+#menu {
     width: 100%;
     text-align: center;
     font-weight: bold;
     list-style: none;
-    margin: 0 auto;
-    padding: 0;
     display: flex;
     flex-wrap: wrap;
 }
 
-.menu a {
+#menu a {
     display: block;
     background: #dcdcdd;
-    padding: 10px;
     text-decoration: none;
 }
 
-.menu li {
+#menu li {
     width: 24.87%;
 }
 
-.menu a:hover {
+#menu a:hover {
     background: #114b5f;
     color: #88d498;
-}
-
-ul.menu ul li {
-    width: 100%;
-}
-
-ul.menu ul {
-    display: none;
 }
 
 @media screen and (max-width: 700px) {
@@ -110,7 +101,7 @@ ul.menu ul {
     }
 }
 
-ul.menu li:hover ul {
+ul#menu li:hover ul {
     display: flex;
 }
 
@@ -140,6 +131,15 @@ div.info {
     .image {
         float: right;
     }
+}
+
+.carousel-item .img-fluid {
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-item>.carousel-caption>h3{
+    color: white;
 }
 
 /* #screenshots figure {
