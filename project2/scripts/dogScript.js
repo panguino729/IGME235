@@ -2,29 +2,42 @@
 
 const breedField = $("#searchterm");
 const subBreedField = $("#subbreed");
-const prefix = "kft3635-"; // change 'abc1234' to your banjo id
+const limitField = $("#limit");
+
+//storage stuff
+const prefix = "eiz4178-"; // change 'abc1234' to your banjo id
 const breedKey = prefix + "breed"
 const subBreedKey = prefix + "subBreed";
+const limitKey = prefix + "limit";
+
 
 window.onload = init;
 
 function init() {
     const storedBreed = localStorage.getItem(breedKey);
     const storedSubBreed = localStorage.getItem(subBreedKey);
+    const storedLimit = localStorage.getItem(limitKey);
 
-    // if we find a previously set name value, display it
+    // if we find a previously set breed value, display it
     if (storedBreed) {
         $("#searchterm").val(storedBreed);
     } else {
-        $("#searchterm").val("not used"); // a default value if `breedField` is not found
+        $("#searchterm").val("not used"); // a default value if breedField is not found
     }
 
-    // if we find a previously set color value, display it
+    // if we find a previously set subBreed value, display it
     if (storedSubBreed) {
         $("#subbreed").val(storedSubBreed);
     }
     else {
         $("#subbreed").val("not used");
+    }
+
+    // if we find a previously set limit value, display it
+    if (storedLimit) {
+        $("#limit").val(storedLimit);
+    } else {
+        $("#limit").val("24"); // a default value if limitField is not found
     }
 
     document.querySelector("#search").onclick = getData;
@@ -43,17 +56,20 @@ function getData() {
     // not necessary for this service endpoint
     let breed = $("#searchterm").val();
     let subBreed = $("#subbreed").val();
+    let limit = $("#limit").val();
+
     displayTerm = breed;
 
-    if (subBreed == "not used") {
+    if (subBreed == "not used" || subBreed == "") {
         // 3 - parse the user entered term we wish to search
         // not necessary for this service endpoint
         breed = breed.trim();
         breed = encodeURIComponent(breed);
         if (breed.length < 1) return;
-        url = SERVICE_URL + breed + "/images";
+        url = SERVICE_URL + breed + "/images/random/" + limit;
 
         localStorage.setItem(breedKey, breed);
+        localStorage.setItem(limitKey, limit);
     }
     else {
         breed = breed.trim();
@@ -63,10 +79,11 @@ function getData() {
         subBreed = subBreed.trim();
         subBreed = encodeURIComponent(subBreed);
         if (subBreed.length < 1) return;
-        url = SERVICE_URL + breed + "/" + subBreed + "/images";
+        url = SERVICE_URL + breed + "/" + subBreed + "/images/random/" + limit;
 
         localStorage.setItem(breedKey, breed);
-        localStorage.setItem(subBreedKey, subBreed)
+        localStorage.setItem(subBreedKey, subBreed);
+        localStorage.setItem(limitKey, limit);
     }
 
     // 4 - update the UI
@@ -80,12 +97,12 @@ function getData() {
         success: jsonLoaded,
         error: function (err) {
             console.error(err.responseTest);
-            // getSubBreed();
         }
-    });
+    })
 
     console.log(url);
 };
+
 
 function jsonLoaded(obj) {
     // 6 - if there are no results, print a message and return
@@ -98,6 +115,7 @@ function jsonLoaded(obj) {
 
     // 7 - if there is an array of results, loop through them
     let results = obj.message;
+    let resultMessage = "<p><i>Here is the result!</i></p>";
     let bigString = "";
 
     for (let i = 0; i < results.length; i++) {
@@ -116,4 +134,4 @@ function jsonLoaded(obj) {
 
     // 8 - display final results to user
     document.querySelector("#content").innerHTML = bigString;
-}
+}	
