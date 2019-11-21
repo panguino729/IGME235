@@ -17,25 +17,31 @@
     <title>Katarina Tretter</title>
 </head>
 
-<body>
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
 
-    <nav class="navbar navbar-expand-sm bg-light justify-content-center" id="navigationBar">
+    <nav class="navbar navbar-expand-md navbar-light bg-light justify-content-center sticky-top bg" id="navigationBar">
         <a class="navbar-brand" href="#">Katarina Tretter</a>
 
-        <ul class="nav justify-content-center" id="menu">
-            <li class="nav-item">
-                <a class="nav-link" href="#aboutMe">About Me</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#portfolio">Portfolio</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#contact">Contact</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#resume">Resume</a>
-            </li>
-        </ul>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+            <ul class="navbar-nav justify-content-center" id="menu">
+                <li class="nav-item">
+                    <a class="nav-link" href="#aboutMe">About Me</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#portfolio">Portfolio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contact">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#resume">Resume</a>
+                </li>
+            </ul>
+        </div>
     </nav>
 
     <!-- ---------ABOUT ME--------- -->
@@ -59,6 +65,108 @@
     </div>
 
     <!-- ---------PORTFOLIO--------- -->
+    <div class="row">
+        <!-- -----GAUNTLET REMAKE----- -->
+        <div class="col-sm-4">
+            <div class="card">
+                <img class="card-img-top" src="images/Scientist.png" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Gauntlet Remake</h5>
+                    <p class="card-text">Space themed Gauntlet reamke - Characters, GUI</p>
+                    <!-- <a href="#" class="btn btn-secondary">More Info</a> -->
+                    <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#gauntlet">
+                        More Info
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- -----SAKANA----- -->
+        <div class="col-sm-4">
+            <div class="card">
+                <img class="card-img-top" src="images/Spacesuit.png" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Sakana</h5>
+                    <p class="card-text">Japanese style fly fishing in VR - Sound, Lantern</p>
+                    <button type="button" id="sakanaVid" class="btn btn-outline-dark" data-toggle="modal" data-target="#sakana">
+                        More Info
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- -----HAT QUEST----- -->
+        <div class="col-sm-4">
+            <div class="card">
+                <img class="card-img-top" src="images/bringMeTheHatsGameplay.PNG" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Hat Quest</h5>
+                    <p class="card-text">Rogue like turn based combat - GUI, Art</p>
+                    <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#hatQuest">
+                        More Info
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ---------MODALS--------- -->
+    <!-- -----GAUNTLET REMAKE----- -->
+    <div class="modal fade" id="gauntlet" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Gauntlet Remake</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/Spacesuit.png" alt="spacesuit">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- -----SAKANA----- -->
+    <div class="modal fade" id="sakana" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Sakana</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <iframe class="embed-responsive-item" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- -----HAT QUEST----- -->
+    <div class="modal fade" id="hatQuest" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Hat Quest</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/Spacesuit.png" alt="spacesuit">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="portfolio" class="carousel slide" data-ride="carousel">
         <h2>Portfolio</h2>
         <!-- Indicators -->

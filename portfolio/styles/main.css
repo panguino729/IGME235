@@ -32,7 +32,7 @@ footer {
 
 /* ---------LINKS--------- */
 
-a:link {
+/* a:link {
     color: #00a8e8;
 }
 
@@ -46,7 +46,7 @@ a:hover {
 
 a:active {
     color: #1a936f;
-}
+} */
 
 /* ---------HEADER--------- */
 
@@ -61,7 +61,8 @@ h1.title {
 }
 
 /* -----NAV----- */
-#navigationBar{
+
+#navigationBar {
     z-index: 500;
 }
 
@@ -76,12 +77,12 @@ h1.title {
 
 #menu a {
     display: block;
-    background: #dcdcdd;
     text-decoration: none;
+    color: rgba(0,0,0,.9);
 }
 
 #menu li {
-    width: 24.87%;
+    width: 25%;
 }
 
 #menu a:hover {
@@ -103,6 +104,16 @@ h1.title {
 
 ul#menu li:hover ul {
     display: flex;
+}
+
+/* change the background color */
+
+.navbar-custom {
+    background-color: #dcdcdd;
+}
+
+.navbar-light .navbar-nav .nav-link, .navbar-light .navbar-brand {
+    color: #114b5f;
 }
 
 /* ---------MAIN--------- */
@@ -138,7 +149,7 @@ div.info {
     height: 100%;
 }
 
-.carousel-item>.carousel-caption>h3{
+.carousel-item>.carousel-caption>h3 {
     color: white;
 }
 

@@ -3,12 +3,11 @@
 }
 
 img {
-    width: 100%;
-    height: auto;
+    width: auto;
+    height: 100%;
     position: relative;
-    background-position: 50% 50%;
-    background-repeat: no-repeat;
-    background-size: cover;
+    object-fit: cover;
+    /* object-position: 50% 50%;; */
 }
 
 div#content {
@@ -22,6 +21,7 @@ div.result {
     width: 300px;
     height: 300px;
     overflow: hidden;
+    /* text-indent: -25%; */
 }
 
 /* figure {

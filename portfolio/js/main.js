@@ -69,3 +69,13 @@ $("#navigationBar a").on('click', function (event) {
 
     }
 });
+
+$('#sakanaVid').click(function () {
+    let src = 'media/Sakana Final Video_1.mp4';
+    $('#sakana').modal('show');
+    $('#sakana iframe').attr('src', src);
+});
+
+$('#sakana button').click(function () {
+    $('#sakana iframe').removeAttr('src');
+});
