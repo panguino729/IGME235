@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <script src="pixi.min.js"></script>
+    <title>Pixi JS Animation</title>
+
+</head>
+
+<body>
+    <script>
+        "use strict"
+        const app = new PIXI.Application(600,400);
+        app.ticker.add(gameLoop);  //Runs gameLoop every built in game tick
+
+        let mousePosition = app.renderer.plugins.interaction.mouse.global;
+
+        document.body.appendChild(app.view);
+
+        function gameLoop() {
+            console.log(mousePosition.x +", " + mousePosition.y);
+        }
+    </script>
+</body>
+
+</html>
