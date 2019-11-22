@@ -22,6 +22,7 @@ div.result {
     height: 300px;
     overflow: hidden;
     margin: 10px;
+    background-repeat: no-repeat;
 }
 
 body {

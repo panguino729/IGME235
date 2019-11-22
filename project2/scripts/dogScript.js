@@ -146,7 +146,8 @@ function jsonLoaded(obj) {
         let smallURL = result;
 
         let url = result;
-        let line = `<div class='result'><a target='_blank' href='${url}'><img src='${smallURL}' title='${result.id}' />`;
+        // let line = `<div class='result'><a target='_blank' href='${url}'><img src='${smallURL}' title='${result.id}' />`;
+        let line = `<div class='result' style='background-image: url(${smallURL})'><a target='_blank' href='${url}'>`;
         line += `</a></div>`;
 
         bigString += line;
