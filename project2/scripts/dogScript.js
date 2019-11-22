@@ -1,5 +1,7 @@
 "use strict";
 
+let dogBreedList;
+
 const breedField = $("#searchterm");
 const subBreedField = $("#subbreed");
 const limitField = $("#limit");
@@ -39,6 +41,17 @@ function init() {
     } else {
         $("#limit").val("24"); // a default value if limitField is not found
     }
+
+    //Get entire list of breeds and their subbreeds
+    $.ajax({
+        dataType: "json",
+        url: "https://dog.ceo/api/breeds/list/all",
+        data: null,
+        success: seperateList,
+        error: function (err) {
+            console.error(err.responseTest);
+        }
+    })
 
     document.querySelector("#search").onclick = getData;
 }
@@ -102,6 +115,15 @@ function getData() {
 
     console.log(url);
 };
+
+function seperateList(obj) {
+    if (obj.status != "success") {
+        document.querySelector("#content").innerHTML = "<p><i>There was a problem!</i></p>";
+        return;
+    }
+
+    let breedList = Object.keys(obj.message);
+}
 
 
 function jsonLoaded(obj) {

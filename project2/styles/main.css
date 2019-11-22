@@ -1,4 +1,4 @@
-
+K
 
 img {
     width: auto;
@@ -73,27 +73,19 @@ p {
 
 button {
     background-image: url(../images/dogbone.png);
+    background-color: transparent;
     /* background-position-y: -100px; */
     /* background-size: 100px 300px; */
     background-size: contain;
-    background-repeat: none;
+    background-repeat: no-repeat;
+    width: 250px;
+    height: 100px;
     max-width: 100%;
-
     border: none;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 18px;
+    font-family: 'Kaushan Script', cursive;
+    font-size: 2.5em;
 }
-
-/* figure {
-    width: 30%;
-    text-align: center;
-    font-style: italic;
-    font-size: smaller;
-    text-indent: 0;
-    border: thin #c5c3c6 solid;
-    margin: 0.5em;
-    padding: 0.5em;
-} */
