@@ -82,6 +82,7 @@ function getData() {
         url = SERVICE_URL + breed + "/images/random/" + limit;
 
         localStorage.setItem(breedKey, breed);
+        localStorage.elete
         localStorage.setItem(limitKey, limit);
     }
     else {
@@ -147,8 +148,9 @@ function jsonLoaded(obj) {
 
         let url = result;
         // let line = `<div class='result'><a target='_blank' href='${url}'><img src='${smallURL}' title='${result.id}' />`;
-        let line = `<div class='result' style='background-image: url(${smallURL})'><a target='_blank' href='${url}'>`;
-        line += `</a></div>`;
+        let line = `<a target='_blank' href='${url}'><div class='result' style='background-image: url(${smallURL})'>`;
+        // let line = "<div class='result' style='background-image: url(" + smallURL + ")'></div>";
+        line += `</div></a>`;
 
         bigString += line;
     }
