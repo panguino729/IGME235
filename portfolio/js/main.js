@@ -71,7 +71,7 @@ $("#navigationBar a").on('click', function (event) {
 });
 
 $('#sakanaVid').click(function () {
-    let src = 'media/Sakana Final Video_1.mp4';
+    let src = 'media/Sakana_Final_Video_1.mp4';
     $('#sakana').modal('show');
     $('#sakana iframe').attr('src', src);
 });

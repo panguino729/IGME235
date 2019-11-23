@@ -65,45 +65,45 @@
     </div>
 
     <!-- ---------PORTFOLIO--------- -->
-    <div class="row">
+    <div class="card-deck">
         <!-- -----GAUNTLET REMAKE----- -->
-        <div class="col-sm-4">
-            <div class="card">
-                <img class="card-img-top" src="images/Scientist.png" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Gauntlet Remake</h5>
-                    <p class="card-text">Space themed Gauntlet reamke - Characters, GUI</p>
-                    <!-- <a href="#" class="btn btn-secondary">More Info</a> -->
-                    <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#gauntlet">
-                        More Info
-                    </button>
-                </div>
+        <div class="card">
+            <img class="card-img-top" src="images/Scientist.png" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Gauntlet Remake</h5>
+                <p class="card-text">Space themed Gauntlet reamke - Characters, GUI</p>
+                <!-- <a href="#" class="btn btn-secondary">More Info</a> -->
+            </div>
+            <div class="card-footer">
+                <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#gauntlet">
+                    More Info
+                </button>
             </div>
         </div>
         <!-- -----SAKANA----- -->
-        <div class="col-sm-4">
-            <div class="card">
-                <img class="card-img-top" src="images/Spacesuit.png" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Sakana</h5>
-                    <p class="card-text">Japanese style fly fishing in VR - Sound, Lantern</p>
-                    <button type="button" id="sakanaVid" class="btn btn-outline-dark" data-toggle="modal" data-target="#sakana">
-                        More Info
-                    </button>
-                </div>
+        <div class="card">
+            <img class="card-img-top" src="images/Spacesuit.png" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Sakana</h5>
+                <p class="card-text">Japanese style fly fishing in VR - Sound, Lantern</p>
+            </div>
+            <div class="card-footer">
+                <button type="button" id="sakanaVid" class="btn btn-outline-dark" data-toggle="modal" data-target="#sakana">
+                    More Info
+                </button>
             </div>
         </div>
         <!-- -----HAT QUEST----- -->
-        <div class="col-sm-4">
-            <div class="card">
-                <img class="card-img-top" src="images/bringMeTheHatsGameplay.PNG" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Hat Quest</h5>
-                    <p class="card-text">Rogue like turn based combat - GUI, Art</p>
-                    <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#hatQuest">
-                        More Info
-                    </button>
-                </div>
+        <div class="card">
+            <img class="card-img-top" src="images/bringMeTheHatsGameplay.PNG" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Hat Quest</h5>
+                <p class="card-text">Rogue like turn based combat - GUI, Art</p>
+            </div>
+            <div class="card-footer">
+                <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#hatQuest">
+                    More Info
+                </button>
             </div>
         </div>
     </div>
