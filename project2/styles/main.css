@@ -1,12 +1,7 @@
-K
-
 img {
     width: auto;
     height: 100%;
     position: relative;
-    background-position: 50% 50%;
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 
 div#content {
@@ -22,7 +17,9 @@ div.result {
     height: 300px;
     overflow: hidden;
     margin: 10px;
+    background-position: 50% 50%;
     background-repeat: no-repeat;
+    background-size: cover;
 }
 
 body {
@@ -89,4 +86,22 @@ button {
     display: inline-block;
     font-family: 'Kaushan Script', cursive;
     font-size: 2.5em;
+}
+
+/* ---------DOCUMENTATION--------- */
+
+.info {
+    text-align: left;
+    background-color: whitesmoke;
+    border: 3px solid blue;
+    font-size: 1.5em;
+    padding: 20px;
+}
+
+.info h2 {
+    text-align: left;
+}
+
+.info ul{
+    list-style: none;
 }
