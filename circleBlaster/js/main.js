@@ -7,6 +7,8 @@ document.body.appendChild(app.view);
 // constants
 const sceneWidth = app.view.width;
 const sceneHeight = app.view.height;
+const prefix = "CircleBlaster235-";
+const highScoreKey = prefix + "highScore"
 
 // pre-load the images
 PIXI.loader.
@@ -16,6 +18,9 @@ PIXI.loader.
 
 // aliases
 let stage;
+
+// storage
+const storedHighScore = localStorage.getItem(highScoreKey);
 
 // game variables
 let startScene;
@@ -28,11 +33,18 @@ let aliens = [];
 let explosions = [];
 let explosionTextures;
 let score = 0;
+let gameOverScoreLabel;
+let highScoreLabel;
+let highScore = 0;
 let life = 100;
 let levelNum = 1;
 let paused = true;
 
 function setup() {
+    if (storedHighScore) {
+        highScore = storedHighScore;
+    }
+
     stage = app.stage;
     // #1 - Create the `start` scene
     startScene = new PIXI.Container();
@@ -56,7 +68,6 @@ function setup() {
     gameScene.addChild(ship);
 
     // #6 - Load Sounds
-    // #6 - Load Sounds
     shootSound = new Howl({
         src: ['sounds/shoot.wav']
     });
@@ -70,11 +81,13 @@ function setup() {
     });
 
     // #7 - Load sprite sheet
+    explosionTextures = loadSpriteSheet();
 
     // #8 - Start update loop
     app.ticker.add(gameLoop);
 
     // #9 - Start listening for click events on the canvas
+    app.view.onclick = fireBullet;
 
     // Now our `startScene` is visible
     // Clicking the button calls startGame()
@@ -167,6 +180,34 @@ function createLabelsAndButtons() {
     gameOverText.y = sceneHeight / 2 - 160;
     gameOverScene.addChild(gameOverText);
 
+    // High Score
+    highScoreLabel = new PIXI.Text();
+    textStyle = new PIXI.TextStyle({
+        fill: 0xFFFFFF,
+        fontSize: 32,
+        fontFamily: "Futura",
+        stroke: 0xFF0000,
+        strokeThickness: 6
+    });
+    highScoreLabel.style = textStyle;
+    highScoreLabel.x = 100;
+    highScoreLabel.y = sceneHeight / 2 + 60;
+    gameOverScene.addChild(highScoreLabel);
+
+    // Final score
+    gameOverScoreLabel = new PIXI.Text();
+    textStyle = new PIXI.TextStyle({
+        fill: 0xFFFFFF,
+        fontSize: 32,
+        fontFamily: "Futura",
+        stroke: 0xFF0000,
+        strokeThickness: 6
+    });
+    gameOverScoreLabel.style = textStyle;
+    gameOverScoreLabel.x = 100;
+    gameOverScoreLabel.y = sceneHeight / 2 + 120;
+    gameOverScene.addChild(gameOverScoreLabel);
+
     // 3B - make "play again?" button
     let playAgainButton = new PIXI.Text("Play Again?");
     playAgainButton.style = buttonStyle;
@@ -198,29 +239,211 @@ function decreaseLifeBy(value) {
 }
 
 function gameLoop() {
-    // if (paused) return; // keep this commented out for now
+    if (paused) return; // keep this commented out for now
 
     // #1 - Calculate "delta time"
     let dt = 1 / app.ticker.FPS;
     if (dt > 1 / 12) dt = 1 / 12;
 
     // #2 - Move Ship
+    let mousePosition = app.renderer.plugins.interaction.mouse.global;
+    // ship.position = mousePosition;
 
+    let amt = 6 * dt; // at 60 FPS would move about 10% of distance per update
+
+    // lerp (linear interpolate) the x & y values with lerp()
+    let newX = lerp(ship.x, mousePosition.x, amt);
+    let newY = lerp(ship.y, mousePosition.y, amt);
+
+    // keep the ship on the screen with clamp()
+    let w2 = ship.width / 2;
+    let h2 = ship.height / 2;
+    ship.x = clamp(newX, 0 + w2, sceneWidth - w2);
+    ship.y = clamp(newY, 0 + h2, sceneHeight - h2);
 
     // #3 - Move Circles
+    for (let c of circles) {
+        c.move(dt);
+        if (c.x <= c.radius || c.x >= sceneWidth - c.radius) {
+            c.reflectX();
+            c.move(dt);
+        }
 
+        if (c.y <= c.radius || c.y >= sceneHeight - c.radius) {
+            c.reflectY();
+            c.move(dt);
+        }
+    }
 
     // #4 - Move Bullets
-
+    for (let b of bullets) {
+        b.move(dt);
+    }
 
     // #5 - Check for Collisions
+    for (let c of circles) {
+        for (let b of bullets) {
+            // #5A - circles & bullets
+            if (rectsIntersect(c, b)) {
+                fireballSound.play();
+                createExplosion(c.x, c.y, 64, 64);
+                gameScene.removeChild(c);
+                c.isAlive = false;
+                gameScene.removeChild(b);
+                b.isAlive = false;
+                increaseScoreBy(1);
+            }
+        }
 
+        // #5B - circles & ship
+        if (c.isAlive && rectsIntersect(c, ship)) {
+            hitSound.play();
+            gameScene.removeChild(c);
+            c.isAlive = false;
+            decreaseLifeBy(20);
+        }
+    }
 
     // #6 - Now do some clean up
 
+    // get rid of dead bullets
+    bullets = bullets.filter(b => b.isAlive);
+
+    // get rid of dead circles
+    circles = circles.filter(c => c.isAlive);
+
+    // get rid of explosions
+    explosions = explosions.filter(e => e.playing);
 
     // #7 - Is game over?
-
+    if (life <= 0) {
+        end();
+        return; // return here so we skip #8 below
+    }
 
     // #8 - Load next level
+    if (circles.length == 0) {
+        levelNum++;
+        loadLevel();
+    }
+}
+
+function createCircles(numCircles) {
+    for (let i = 0; i < numCircles; i++) {
+        let c = new Circle(10, 0xffff00);
+        c.x = Math.random() * (sceneWidth - 50) + 25;
+        c.y = Math.random() * (sceneHeight - 400) + 25;
+        circles.push(c);
+        gameScene.addChild(c);
+    }
+}
+
+function loadLevel() {
+    createCircles(levelNum * 5);
+    paused = false;
+
+    if (levelNum >= 2) {
+        app.view.onclick = fireMultBullets;
+    }
+    else if (levelNum == 1) {
+        app.view.onclick = fireBullet;
+    }
+}
+
+// Clicking the button calls startGame()
+function startGame() {
+    startScene.visible = false;
+    gameOverScene.visible = false;
+    gameScene.visible = true;
+    levelNum = 1;
+    score = 0;
+    life = 100;
+    increaseScoreBy(0);
+    decreaseLifeBy(0);
+    ship.x = 300;
+    ship.y = 550;
+    loadLevel();
+}
+
+function end() {
+    paused = true;
+    // clear out level
+    circles.forEach(c => gameScene.removeChild(c)); // concise arrow function with no brackets and no return
+    circles = [];
+
+    bullets.forEach(b => gameScene.removeChild(b)); // ditto
+    bullets = [];
+
+    explosions.forEach(e => gameScene.removeChild(e)); // ditto
+    explosions = [];
+
+    gameOverScoreLabel.text = `Your final score: ${score}`;
+    console.log(score);
+    if (highScore < score) {
+        highScore = score;
+        localStorage.setItem(highScoreKey, highScore);
+    }
+    highScoreLabel.text = `High score: ${highScore}`;
+
+    gameOverScene.visible = true;
+    gameScene.visible = false;
+}
+
+function fireBullet(e) {
+    if (paused) return;
+
+    let b = new Bullet(0xffffff, ship.x, ship.y);
+    bullets.push(b);
+    gameScene.addChild(b);
+    shootSound.play();
+}
+
+function fireMultBullets(e) {
+    if (paused) return;
+
+    let b1 = new Bullet(0xffffff, ship.x - 6, ship.y);
+    bullets.push(b1);
+    gameScene.addChild(b1);
+    shootSound.play();
+
+    let b2 = new Bullet(0xffffff, ship.x, ship.y);
+    bullets.push(b2);
+    gameScene.addChild(b2);
+
+    let b3 = new Bullet(0xffffff, ship.x + 6, ship.y);
+    bullets.push(b3);
+    gameScene.addChild(b3);
+}
+
+function loadSpriteSheet() {
+    // the 16 animation frames in each row are 64x64 pixels
+    // we are using the second row
+    // http://pixijs.download/dev/docs/PIXI.BaseTexture.html
+    let spriteSheet = PIXI.BaseTexture.fromImage("images/explosions.png");
+    let width = 64;
+    let height = 64;
+    let numFrames = 16;
+    let textures = [];
+    for (let i = 0; i < numFrames; i++) {
+        // http://pixijs.download/dev/docs/PIXI.Texture.html
+        let frame = new PIXI.Texture(spriteSheet, new PIXI.Rectangle(i * width, 64, width, height));
+        textures.push(frame);
+    }
+    return textures;
+}
+
+function createExplosion(x, y, frameWidth, frameHeight) {
+    // http://pixijs.download/dev/docs/PIXI.extras.AnimatedSprite.html
+    // the animation frames are 64x64 pixels
+    let w2 = frameWidth / 2;
+    let h2 = frameHeight / 2;
+    let expl = new PIXI.extras.AnimatedSprite(explosionTextures);
+    expl.x = x - w2; // we want the explosions to appear at the center of the circle
+    expl.y = y - h2; // ditto
+    expl.animationSpeed = 1 / 7;
+    expl.loop = false;
+    expl.onComplete = e => gameScene.removeChild(expl);
+    explosions.push(expl);
+    gameScene.addChild(expl);
+    expl.play();
 }
