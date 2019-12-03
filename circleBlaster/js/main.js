@@ -265,13 +265,13 @@ function gameLoop() {
     for (let c of circles) {
         c.move(dt);
         if (c.x <= c.radius || c.x >= sceneWidth - c.radius) {
-            c.reflectX();
-            c.move(dt);
+            c.reflectX(sceneWidth);
+            // c.move(dt);
         }
 
         if (c.y <= c.radius || c.y >= sceneHeight - c.radius) {
-            c.reflectY();
-            c.move(dt);
+            c.reflectY(sceneHeight);
+            // c.move(dt);
         }
     }
 
@@ -329,10 +329,67 @@ function gameLoop() {
 }
 
 function createCircles(numCircles) {
-    for (let i = 0; i < numCircles; i++) {
+    // standard bouncing circles
+    for (let i = 0; i < numCircles / 4; i++) {
         let c = new Circle(10, 0xffff00);
         c.x = Math.random() * (sceneWidth - 50) + 25;
         c.y = Math.random() * (sceneHeight - 400) + 25;
+        circles.push(c);
+        gameScene.addChild(c);
+    }
+
+    // orthogonal circles
+    for (let i = 0; i < numCircles / 4; i++) {
+        let c = new Circle(10, 0x00ffff);
+        c.speed = Math.random() * 100 + 100;
+        if (Math.random() < .5) {
+            c.x = Math.random() * (sceneWidth - 50) + 25;
+            c.y = Math.random() * 100 + c.radius;
+            c.fwd = { x: 0, y: 1 };
+        }
+        else {
+            c.x = Math.random() * 25 + c.radius;
+            c.y = Math.random() * (sceneHeight - 80) - c.radius;
+            c.fwd = { x: 1, y: 0 };
+        }
+        circles.push(c);
+        gameScene.addChild(c);
+    }
+
+    // wrapping circles
+    for (let i = 0; i < numCircles / 4; i++) {
+        let c = new WrappingCircle(10, 0xff00ff);
+        c.x = Math.random() * (sceneWidth - 50) + 25;
+        c.y = Math.random() * (sceneHeight - 400) + 25;
+        c.speed = 60;
+        circles.push(c);
+        gameScene.addChild(c);
+    }
+
+    // seeking circles
+    for (let i = 0; i < numCircles / 3; i++) {
+        let c = new SeekingCircle(5, 0xff0000);
+        c.x = Math.random() * (sceneWidth - 50) + 25;
+        c.y = Math.random() * (sceneHeight - 400) + 25;
+        c.speed = 60;
+        c.activate(ship);
+        circles.push(c);
+        gameScene.addChild(c);
+    }
+
+    // orthogonal wrapping circles
+    for (let i = 0; i < numCircles / 4; i++) {
+        let c = new WrappingCircle(10, 0x00FF00);
+        c.speed = Math.random() * 100 + 100;
+        if (Math.random() < .5) {
+            c.x = Math.random() * (sceneWidth - 50) + 25;
+            c.y = Math.random() * 100 + c.radius * 2;
+            c.fwd = { x: 0, y: 1 }
+        } else {
+            c.x = Math.random() * 25 + c.radius * 2;
+            c.y = Math.random() * (sceneHeight - 80) - c.radius * 2;
+            c.fwd = { x: 1, y: 0 };
+        }
         circles.push(c);
         gameScene.addChild(c);
     }
