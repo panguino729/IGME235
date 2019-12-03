@@ -52,12 +52,27 @@ function setup() {
     createLabelsAndButtons();
 
     // #5 - Create ship
+    ship = new Ship();
+    gameScene.addChild(ship);
 
     // #6 - Load Sounds
+    // #6 - Load Sounds
+    shootSound = new Howl({
+        src: ['sounds/shoot.wav']
+    });
+
+    hitSound = new Howl({
+        src: ['sounds/hit.mp3']
+    });
+
+    fireballSound = new Howl({
+        src: ['sounds/fireball.mp3']
+    });
 
     // #7 - Load sprite sheet
 
     // #8 - Start update loop
+    app.ticker.add(gameLoop);
 
     // #9 - Start listening for click events on the canvas
 
@@ -180,4 +195,32 @@ function decreaseLifeBy(value) {
     life -= value;
     life = parseInt(life);
     lifeLabel.text = `Life ${life}%`;
+}
+
+function gameLoop() {
+    // if (paused) return; // keep this commented out for now
+
+    // #1 - Calculate "delta time"
+    let dt = 1 / app.ticker.FPS;
+    if (dt > 1 / 12) dt = 1 / 12;
+
+    // #2 - Move Ship
+
+
+    // #3 - Move Circles
+
+
+    // #4 - Move Bullets
+
+
+    // #5 - Check for Collisions
+
+
+    // #6 - Now do some clean up
+
+
+    // #7 - Is game over?
+
+
+    // #8 - Load next level
 }
