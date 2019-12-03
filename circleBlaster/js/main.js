@@ -96,17 +96,17 @@ function setup() {
 function createLabelsAndButtons() {
     let buttonStyle = new PIXI.TextStyle({
         fill: 0xff0000,
-        fontSize: 48,
-        fontFamily: "Futura"
+        fontSize: 20,
+        fontFamily: "Press Start 2P"
     });
 
     // 1 - set up `startScene`
     // 1A - make the top start label
-    let startLabel1 = new PIXI.Text("Circle Blast");
+    let startLabel1 = new PIXI.Text("Circle Blast!");
     startLabel1.style = new PIXI.TextStyle({
         fill: 0xffffff,
-        fontSize: 96,
-        fontFamily: 'Futura',
+        fontSize: 40,
+        fontFamily: 'Press Start 2P',
         stroke: 0xff0000,
         strokeThickness: 6
     });
@@ -118,13 +118,13 @@ function createLabelsAndButtons() {
     let startLabel2 = new PIXI.Text("R U worthy..?");
     startLabel2.style = new PIXI.TextStyle({
         fill: 0xffffff,
-        fontSize: 32,
-        fontFamily: 'Futura',
+        fontSize: 25,
+        fontFamily: 'Press Start 2P',
         fontStyle: 'italic',
         stroke: 0xff0000,
         strokeThickness: 6
     });
-    startLabel2.x = 185;
+    startLabel2.x = 145;
     startLabel2.y = 300;
     startScene.addChild(startLabel2);
 
@@ -144,7 +144,7 @@ function createLabelsAndButtons() {
     let textStyle = new PIXI.TextStyle({
         fill: 0xffffff,
         fontSize: 18,
-        fontFamily: 'Futura',
+        fontFamily: 'Press Start 2P',
         stroke: 0xff0000,
         strokeThickness: 4
     });
@@ -167,16 +167,16 @@ function createLabelsAndButtons() {
 
     // 3 - set up `gameOverScene`
     // 3A - make game over text
-    let gameOverText = new PIXI.Text("Game Over!\n        :-O");
+    let gameOverText = new PIXI.Text("Game Over!\n   :-O");
     textStyle = new PIXI.TextStyle({
         fill: 0xFFFFFF,
-        fontSize: 64,
-        fontFamily: "Futura",
+        fontSize: 40,
+        fontFamily: "Press Start 2P",
         stroke: 0xFF0000,
         strokeThickness: 6
     });
     gameOverText.style = textStyle;
-    gameOverText.x = 100;
+    gameOverText.x = 120;
     gameOverText.y = sceneHeight / 2 - 160;
     gameOverScene.addChild(gameOverText);
 
@@ -184,34 +184,34 @@ function createLabelsAndButtons() {
     highScoreLabel = new PIXI.Text();
     textStyle = new PIXI.TextStyle({
         fill: 0xFFFFFF,
-        fontSize: 32,
-        fontFamily: "Futura",
+        fontSize: 25,
+        fontFamily: "Press Start 2P",
         stroke: 0xFF0000,
         strokeThickness: 6
     });
     highScoreLabel.style = textStyle;
-    highScoreLabel.x = 100;
-    highScoreLabel.y = sceneHeight / 2 + 60;
+    highScoreLabel.x = 130;
+    highScoreLabel.y = sceneHeight / 2 + 10;
     gameOverScene.addChild(highScoreLabel);
 
     // Final score
     gameOverScoreLabel = new PIXI.Text();
     textStyle = new PIXI.TextStyle({
         fill: 0xFFFFFF,
-        fontSize: 32,
-        fontFamily: "Futura",
+        fontSize: 25,
+        fontFamily: "Press Start 2P",
         stroke: 0xFF0000,
         strokeThickness: 6
     });
     gameOverScoreLabel.style = textStyle;
-    gameOverScoreLabel.x = 100;
-    gameOverScoreLabel.y = sceneHeight / 2 + 120;
+    gameOverScoreLabel.x = 80;
+    gameOverScoreLabel.y = sceneHeight / 2 + 70;
     gameOverScene.addChild(gameOverScoreLabel);
 
     // 3B - make "play again?" button
     let playAgainButton = new PIXI.Text("Play Again?");
     playAgainButton.style = buttonStyle;
-    playAgainButton.x = 150;
+    playAgainButton.x = 200;
     playAgainButton.y = sceneHeight - 100;
     playAgainButton.interactive = true;
     playAgainButton.buttonMode = true;
