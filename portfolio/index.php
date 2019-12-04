@@ -65,45 +65,48 @@
     </div>
 
     <!-- ---------PORTFOLIO--------- -->
-    <div class="card-deck">
-        <!-- -----GAUNTLET REMAKE----- -->
-        <div class="card">
-            <img class="card-img-top" src="images/Scientist.png" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Gauntlet Remake</h5>
-                <p class="card-text">Space themed Gauntlet reamke - Characters, GUI</p>
-                <!-- <a href="#" class="btn btn-secondary">More Info</a> -->
+    <div id="portfolio">
+        <h2>Portfolio</h2>
+        <div class="card-deck">
+            <!-- -----GAUNTLET REMAKE----- -->
+            <div class="card">
+                <img class="card-img-top" src="images/Scientist.png" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Gauntlet Remake</h5>
+                    <p class="card-text">Space themed Gauntlet reamke - Characters, GUI</p>
+                    <!-- <a href="#" class="btn btn-secondary">More Info</a> -->
+                </div>
+                <div class="card-footer">
+                    <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#gauntlet">
+                        More Info
+                    </button>
+                </div>
             </div>
-            <div class="card-footer">
-                <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#gauntlet">
-                    More Info
-                </button>
+            <!-- -----SAKANA----- -->
+            <div class="card">
+                <img class="card-img-top" src="images/Spacesuit.png" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Sakana</h5>
+                    <p class="card-text">Japanese style fly fishing in VR - Sound, Lantern</p>
+                </div>
+                <div class="card-footer">
+                    <button type="button" id="sakanaVid" class="btn btn-outline-dark" data-toggle="modal" data-target="#sakana">
+                        More Info
+                    </button>
+                </div>
             </div>
-        </div>
-        <!-- -----SAKANA----- -->
-        <div class="card">
-            <img class="card-img-top" src="images/Spacesuit.png" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Sakana</h5>
-                <p class="card-text">Japanese style fly fishing in VR - Sound, Lantern</p>
-            </div>
-            <div class="card-footer">
-                <button type="button" id="sakanaVid" class="btn btn-outline-dark" data-toggle="modal" data-target="#sakana">
-                    More Info
-                </button>
-            </div>
-        </div>
-        <!-- -----HAT QUEST----- -->
-        <div class="card">
-            <img class="card-img-top" src="images/bringMeTheHatsGameplay.PNG" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Hat Quest</h5>
-                <p class="card-text">Rogue like turn based combat - GUI, Art</p>
-            </div>
-            <div class="card-footer">
-                <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#hatQuest">
-                    More Info
-                </button>
+            <!-- -----HAT QUEST----- -->
+            <div class="card">
+                <img class="card-img-top" src="images/bringMeTheHatsGameplay.PNG" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Hat Quest</h5>
+                    <p class="card-text">Rogue like turn based combat - GUI, Art</p>
+                </div>
+                <div class="card-footer">
+                    <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#hatQuest">
+                        More Info
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -165,49 +168,6 @@
                 </div>
             </div>
         </div>
-    </div>
-
-    <div id="portfolio" class="carousel slide" data-ride="carousel">
-        <h2>Portfolio</h2>
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
-            <li data-target="#project0" data-slide-to="0" class="project0 active"></li>
-            <li data-target="#project1" data-slide-to="1" class="project1"></li>
-            <li data-target="#project2" data-slide-to="2" class="project2"></li>
-        </ol>
-        <!-- The Slideshow -->
-        <div class="carousel-inner" role="listbox">
-            <div class="carousel-item active">
-                <img class="d-block img-fluid" src="images/guantletUI.png" alt="Gauntlet Remake">
-                <div class="carousel-caption d-none d-md-block">
-                    <h3>Gauntlet Remake</h3>
-                    <p>Space themed Guantlet remake - Characters, GUI</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img class="d-block img-fluid" src="images/stefan-stefancik-105376-unsplash.jpg" alt="Hat Quest">
-                <div class="carousel-caption d-none d-md-block">
-                    <h3>Sakana</h3>
-                    <p>Japanese style fly fishing in VR - Sound, Lantern</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img class="d-block img-fluid" src="images/bringMeTheHatsGameplay.PNG" alt="Third slide">
-                <div class="carousel-caption d-none d-md-block">
-                    <h3>Hat Quest</h3>
-                    <p>Rougue like turn based combat - GUI, Art</p>
-                </div>
-            </div>
-        </div>
-        <!-- Left and Right controls -->
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
     </div>
 
     <!-- ---------CONTACT ME--------- -->

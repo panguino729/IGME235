@@ -1,30 +1,5 @@
 "use strict"
 
-// -----CAROUSEL-----
-
-// Activate Carousel with a specified interval
-$("#portfolio").carousel({ interval: 7000, pause: "hover", keyboard: true });
-
-// Enable Carousel Indicators
-$(".project0").click(function () {
-    $("#portfolio").carousel(0);
-});
-$(".project1").click(function () {
-    $("#portfolio").carousel(1);
-});
-$(".project2").click(function () {
-    $("#portfolio").carousel(2);
-});
-
-// Enable Carousel Controls
-$(".carousel-control-prev").click(function () {
-    $("#portfolio").carousel("prev");
-});
-
-$(".carousel-control-next").click(function () {
-    $("#portfolio").carousel("next");
-});
-
 // -----SCROLLING-----
 
 // When the user scrolls the page, execute myFunction
@@ -61,7 +36,7 @@ $("#navigationBar a").on('click', function (event) {
         // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
         $('html, body').animate({
             scrollTop: $(hash).offset().top
-        }, 500, function () {
+        }, 800, function () {
 
             // Add hash (#) to URL when done scrolling (default click behavior)
             window.location.hash = hash;
@@ -69,6 +44,8 @@ $("#navigationBar a").on('click', function (event) {
 
     }
 });
+
+// -----PORTFOLIO-----
 
 $('#sakanaVid').click(function () {
     let src = 'media/Sakana_Final_Video_1.mp4';
