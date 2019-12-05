@@ -8,6 +8,15 @@
 
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <script src="scripts/gamedata.js"></script>
+
+
+    <style>
+        audio {
+            display: none;
+        }
+    </style>
 
     <title>Project</title>
 </head>
@@ -30,13 +39,20 @@
     <main>
         <h2>Effugium</h2>
 
-        <div id="gameblock">
-            <img src="media/nethackDosGame2.png" alt="Placeholder for gameplay">
-        </div>
+        <!-- https://freesound.org/people/Dirtjm/sounds/262279/ -->
+        <audio id="effectAudio" src="sounds/grunt.wav" controls></audio>
+
+        <section id="gameArea">
+            <div id="gameblock">
+                <h3>Here</h3>
+            </div>
+
+        </section>
 
         <section class="info" id="instruc">
             <h2>Instructions</h2>
-            <p>Use the 'W', 'A', 'S', and 'D' keys or the arrow keys to navigate the level. Use the 'enter' to interact with objects.</p>
+            <p>Use the 'W', 'A', 'S', and 'D' keys or the arrow keys to navigate the level. Use the 'enter' to interact
+                with objects.</p>
         </section>
     </main>
 
@@ -45,6 +61,9 @@
             2019 - Katarina Tretter
         </p>
     </footer>
+
+    <script src="scripts/gameLogic.js"></script>
+
 </body>
 
 </html>

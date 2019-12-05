@@ -96,13 +96,13 @@ ul.menu ul {
 }
 
 @media screen and (max-width: 700px) {
-    .menu > li {
+    .menu>li {
         flex-basis: 50%;
     }
 }
 
 @media screen and (max-width: 300px) {
-    .menu > li {
+    .menu>li {
         flex-basis: 100%;
     }
 }
@@ -111,7 +111,7 @@ ul.menu li:hover ul {
     display: flex;
 }
 
-.current a{
+.current a {
     background: #114b5f;
     color: #88d498;
 }
@@ -161,11 +161,17 @@ div.imgblock {
     flex-wrap: wrap;
 }
 
-#process ul{
+#process ul {
     list-style: none;
 }
 
 /* -----GAME----- */
+
+section#gameArea{
+    display: inline-block;
+    width: 960px;
+    height: 640px;
+}
 
 .game div {
     margin-left: auto;
@@ -173,9 +179,164 @@ div.imgblock {
     width: 100%;
 }
 
-#gameblock img {
-    max-width: 100%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+
+/* UI Styles */
+
+div#gameblock {
+    padding: 0;
+    display: inline-block;
+    position: absolute;
+    z-index: 0;
+    /* underneath everything */
+}
+
+/* Background Tile Styles */
+
+span.floor {
+    width: 32px;
+    height: 32px;
+    background: url(../images/terrain.png);
+    display: inline-block;
+}
+
+span.wall {
+    width: 32px;
+    height: 32px;
+    background: url(../images/terrain.png);
+    background-position: -32px -32px;
+    display: inline-block;
+}
+
+span.locked {
+    width: 32px;
+    height: 32px;
+    background: url(../images/terrain.png);
+    background-position: -64px -64px;
+    display: inline-block;
+}
+
+span.water {
+    width: 32px;
+    height: 32px;
+    background: url(../images/terrain.png);
+    background-position: -96px -96px;
+    display: inline-block;
+}
+
+span.ground {
+    width: 32px;
+    height: 32px;
+    background: url(../images/terrain.png);
+    background-position: -128px -128px;
+    display: inline-block;
+}
+
+span.cell {
+    height: 32px;
+    width: 32px;
+    border: 1px solid #333;
+    /* actual width & height is 32px because of border */
+    background-color: #ccc;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+    position: absolute;
+}
+
+span.cellSelected {
+    height: 32px;
+    width: 32px;
+    border: 0;
+    background-color: red;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    display: inline-block;
+}
+
+/* Game Object Styles */
+
+span.gameObject {
+    height: 32px;
+    width: 32px;
+    position: absolute;
+    left: -100px;
+    top: -100px;
+    z-index: 100;
+    /* layered between background tiles and player */
+    background-color: black;
+    background: url(../images/nethack-32x32.png);
+}
+
+span.chest1 {
+    position: absolute;
+    left: -100px;
+    top: -100px;
+    background-position: -1088px -288px;
+}
+
+span.key1{
+    position: absolute;
+    left: -100px;
+    top: -100px;
+    background-position: -1024px -448px;
+}
+
+span.monster1 {
+    position: absolute;
+    left: -100px;
+    top: -100px;
+    z-index: 500;
+    /* layered between other game objects and player */
+    background-position: -96px -32px;
+}
+
+span.monster2 {
+    position: absolute;
+    left: -100px;
+    top: -100px;
+    z-index: 500;
+    /* layered between other game objects and player */
+    background-position: -192px -128px;
+}
+
+span.monster3 {
+    position: absolute;
+    left: -100px;
+    top: -100px;
+    z-index: 500;
+    /* layered between other game objects and player */
+    background-position: -192px -224px;
+}
+
+/* player style */
+
+span.player {
+    background: url(../images/nethack-32x32.png);
+    background-position: -96px -96px;
+    z-index: 1000;
+    /* On top of everything */
+    transition-property: all;
+    transition-duration: .25s;
+}
+
+span.ring1 {
+    position: absolute;
+    left: -100px;
+    top: -100px;
+    background-position: -320px -448px;
+}
+
+span.treasure1 {
+    position: absolute;
+    left: -100px;
+    top: -100px;
+    background-position: -448px -448px;
+}
+
+span.treasure2 {
+    position: absolute;
+    left: -100px;
+    top: -100px;
+    background-position: -928px -448px;
 }
