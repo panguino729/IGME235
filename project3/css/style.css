@@ -168,7 +168,7 @@ div.imgblock {
 /* -----GAME----- */
 
 section#gameArea{
-    display: inline-block;
+    display: grid;
     width: 960px;
     height: 640px;
 }
@@ -182,12 +182,29 @@ section#gameArea{
 
 /* UI Styles */
 
-div#gameblock {
+div#gameBlock {
     padding: 0;
     display: inline-block;
     position: absolute;
     z-index: 0;
+    grid-area: gameScreen;
     /* underneath everything */
+}
+
+#gameInfo {
+    grid-area: gameInfo;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 960px auto;
+    justify-content: space-between;
+    grid-column-gap: 15px;
+    grid-template-areas: 'gameScreen gameInfo';
+}
+
+#inventory ul {
+    list-style: none;
 }
 
 /* Background Tile Styles */

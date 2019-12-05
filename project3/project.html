@@ -42,11 +42,28 @@
         <!-- https://freesound.org/people/Dirtjm/sounds/262279/ -->
         <audio id="effectAudio" src="sounds/grunt.wav" controls></audio>
 
-        <section id="gameArea">
-            <div id="gameblock">
-                <h3>Here</h3>
+        <section class="grid-container" id="gameArea">
+            <div class="grid-item" id="gameBlock">
             </div>
+            <div class="info grid-item" id="gameInfo">
+                <div class="info" id="health">
+                    <h3>Health</h3>
+                    <p></p>
+                </div>
 
+                <div class="info" id="score">
+                    <h3>Score</h3>
+                    <p></p>
+                </div>
+
+                <div class="info" id="inventory">
+                    <h3>Inventory</h3>
+                    <ul id="inven">
+
+                    </ul>
+                </div>
+
+            </div>
         </section>
 
         <section class="info" id="instruc">
@@ -62,6 +79,8 @@
         </p>
     </footer>
 
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <script src="scripts/gameLogic.js"></script>
 
 </body>

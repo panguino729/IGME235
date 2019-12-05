@@ -3,7 +3,11 @@
 // I. VARIABLES
 const cellWidth = 32;
 const cellSpacing = 0;
-const container = document.querySelector("#gameblock");
+const totalHealth = 100;
+const container = document.querySelector("#gameBlock");
+const inventory = document.querySelector("#inven");
+const health = document.querySelector("#health").querySelector("p");
+const score = document.querySelector("#score").querySelector("p");
 const cells = []; // the HTML elements - our "view"
 
 // faking an enumeration here
@@ -21,7 +25,7 @@ const worldTile = Object.freeze({
     FLOOR: 0,
     WALL: 1,
     LOCKED: 2,
-    WATER: 3,
+    END: 3,
     GROUND: 4
 });
 
@@ -30,6 +34,9 @@ let effectAudio = undefined;
 
 // level data is over in gamedata.js
 let currentLevelNumber = 1;
+let currentHealth = 100;
+let currentScore = 0;
+let totalScore = 0;
 let currentGameWorld = undefined;   // a 2D array - the grid:  walls, floors, water, etc...
 let currentGameObjects = undefined; // a 1D array - stuff that's on top of the grid and can move: monsters, treasure, keys, etc...
 let currentInventory = undefined;   // a 1D array - stuff that the player has picked up
@@ -58,6 +65,8 @@ window.onload = () => {
     effectAudio = document.querySelector("#effectAudio");
     effectAudio.volume = 0.2;
     setupEvents();
+    health.innerHTML = `${currentHealth}/${totalHealth}`;
+    score.innerHTML = currentScore;
 }
 
 
@@ -79,7 +88,7 @@ function createGridElements(numRows, numCols) {
 }
 
 // the elements on the screen that can move and change - also part of the "view"
-function loadLevel(levelNum = 1) {
+function loadLevel(levelNum = 1, playerX = 6, playerY = 5) {
     currentGameObjects = []; // clear out the old array
     currentInventory = [];
     const node = document.createElement("span");
@@ -129,7 +138,7 @@ function drawGrid(array) {
                     element.classList.add("locked");
                     break;
 
-                case worldTile.WATER:
+                case worldTile.END:
                     element.classList.add("water");
                     break;
 
@@ -140,7 +149,6 @@ function drawGrid(array) {
         }
     }
 }
-
 
 function drawGameObjects(array) {
     // player
@@ -188,7 +196,7 @@ function movePlayer(e) {
     /// Checking if move is allowed
     function checkIsLegalMove(nextX, nextY) {
         let nextTile = currentGameWorld[nextY][nextX];
-        if (nextTile != worldTile.WALL && nextTile != worldTile.LOCKED) {
+        if (nextTile != worldTile.WALL && nextTile != worldTile.LOCKED && nextTile != worldTile.END) {
             checkCollision(nextX, nextY);
             return true;
         }
@@ -208,7 +216,12 @@ function movePlayer(e) {
             else {
                 currentInventory.splice(currentInventory.indexOf(key.type), 1);
                 currentGameWorld[nextX, nextY] = 0;
+                inventory.removeChild(inventory.childNodes[findChildNode("key", "#inven")]);
             }
+        }
+        else if (nextTile == worldTile.END){
+            currentLevelNumber += 1;
+            nextLevel();
         }
         else {
             effectAudio.play();
@@ -229,7 +242,7 @@ function setupEvents() {
         //console.log("keydown=" + e.keyCode);
 
         // checking for other keys
-        var char = String.fromCharCode(e.keyCode);
+        let char = String.fromCharCode(e.keyCode);
         if (char == "p" || char == "P") {
 
         }
@@ -261,11 +274,21 @@ function pickUpItem() {
     let y = player.y;
     const levelObjects = currentGameObjects;
     let picked;
+    let li = document.createElement("li");
 
     for (let obj of levelObjects) {
-        if (player.x == obj.x && player.y == obj.y) {
-            console.log(`Picked up: ${obj.type}`);
-            console.log(`${obj.x} , ${obj.y}`);
+        if (player.x == obj.x && player.y == obj.y && obj.type != "monster") {
+            li.innerHTML = obj.type;
+            inventory.appendChild(li);
+            if (obj.type == "chest"){
+                currentScore += 10;
+            }
+            else if (obj.type == "treasure"){
+                currentScore += 5;
+            }
+            score.innerHTML = currentScore;
+            // console.log(`Picked up: ${obj.type}`);
+            // console.log(`${obj.x} , ${obj.y}`);
             picked = obj;
             break;
         }
@@ -278,19 +301,32 @@ function pickUpItem() {
 
     currentInventory.push(picked);
     currentGameObjects.splice(currentGameObjects.indexOf(picked), 1);
-    container.removeChild(container.childNodes[findChildNode(picked)]);
+    container.removeChild(container.childNodes[findChildNode(picked, ".gameObject")]);
 }
 
 /// Find the index of the child node within the parent
-function findChildNode(child) {
+function findChildNode(child, className) {
     let i = 0;
-    let children = document.querySelectorAll(".gameObject");
+    let children;
     let childNode;
 
-    for (let j = 0; j < children.length; j++) {
-        if (children[j].style.cssText == (`left: ${child.x * (cellWidth + cellSpacing)}px; top: ${child.y * (cellWidth + cellSpacing)}px;`) && children[j].classList[1] != "player" && children[j].classList[1] != "monster") {
-            childNode = children[j];
-            break;
+    if (className == ".gameObject") {
+        children = document.querySelectorAll(className);
+        for (let j = 0; j < children.length; j++) {
+            if (children[j].style.cssText == (`left: ${child.x * (cellWidth + cellSpacing)}px; top: ${child.y * (cellWidth + cellSpacing)}px;`) && children[j].classList[1] != "player" && children[j].classList[1] != "monster") {
+                childNode = children[j];
+                break;
+            }
+        }
+    }
+
+    else if (className == "#inven") {
+        children = document.querySelector(className).childNodes;
+        for (let j = 0; j < children.length; j++) {
+            if (children[j].innerHTML == child) {
+                childNode = children[j];
+                break;
+            }
         }
     }
 
@@ -301,11 +337,29 @@ function findChildNode(child) {
     return i;
 }
 
-function checkCollision(nextX, nextY){
-    for (let obj of currentGameObjects){
-        if (obj.x == nextX && obj.y == nextY && obj.type == "monster"){
-                effectAudio.play();
-                console.log("monster");
+function checkCollision(nextX, nextY) {
+    for (let obj of currentGameObjects) {
+        if (obj.x == nextX && obj.y == nextY && obj.type == "monster") {
+            effectAudio.play();
+            currentHealth -= 20;
+            health.innerHTML = `${currentHealth}/${totalHealth}`;
+            console.log("monster");
         }
     }
+}
+
+function nextLevel(){
+    $('div#gameBlock').empty();
+
+    currentGameWorld = gameworld["world" + currentLevelNumber];
+    let numCols = currentGameWorld[0].length;
+    let numRows = currentGameWorld.length;
+    createGridElements(numRows, numCols);
+    drawGrid(currentGameWorld);
+    loadLevel(currentLevelNumber);
+    drawGameObjects(currentGameObjects);
+    effectAudio = document.querySelector("#effectAudio");
+    effectAudio.volume = 0.2;
+    setupEvents();
+    health.innerHTML = `${currentHealth}/${totalHealth}`;
 }

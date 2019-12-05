@@ -2,7 +2,7 @@ const gameworld = {
 
 	world1: [ 
 		[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-		[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1],
+		[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,3,0,0,0,0,1],
 		[1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,1],
 		[1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,1],
 		[1,1,1,1,1,0,0,0,0,0,1,0,0,1,0,0,0,1,1,1,1,1,1,1,1,1,1,2,1,1],
@@ -64,6 +64,19 @@ const cssClass = Object.freeze({
 const allGameObjects = {
 	// we aren't using .type yet
 	level1:[
+		{x:10, y:10, type:"monster", 	className: cssClass.MONSTER1},
+		{x:2,  y:12, type:"monster",	className: cssClass.MONSTER1},
+		{x:6,  y:17, type:"monster",	className: cssClass.MONSTER2},
+		{x:16, y:3,  type:"monster",	className: cssClass.MONSTER3},
+		{x:28, y:8,  type:"monster",	className: cssClass.MONSTER3},
+		{x:27, y:14, type:"chest",		className: cssClass.CHEST1},
+		{x:2,  y:18, type:"key",		className: cssClass.KEY1},
+		{x:15, y:12, type:"key", 		className: cssClass.KEY1},
+		{x:6,  y:7,  type:"treasure",	className: cssClass.TREASURE1},
+		{x:16, y:8,  type:"treasure",	className: cssClass.TREASURE2},
+		{x:16, y:16, type:"chest",		className: cssClass.CHEST1},
+	],
+	level2:[
 		{x:10, y:10, type:"monster", 	className: cssClass.MONSTER1},
 		{x:2,  y:12, type:"monster",	className: cssClass.MONSTER1},
 		{x:6,  y:17, type:"monster",	className: cssClass.MONSTER2},
