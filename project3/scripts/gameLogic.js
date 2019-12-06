@@ -8,16 +8,17 @@ const container = document.querySelector("#gameBlock");
 const inventory = document.querySelector("#inven");
 const health = document.querySelector("#health").querySelector("p");
 const score = document.querySelector("#score").querySelector("p");
+const test = document.querySelector("#test").querySelector("p");
 const cells = []; // the HTML elements - our "view"
 
 // faking an enumeration here
 const keyboard = Object.freeze({
     SHIFT: 16,
     SPACE: 32,
-    LEFT: 65,
-    UP: 87,
-    RIGHT: 68,
-    DOWN: 83
+    LEFT: 65,  // W
+    UP: 87,    // A
+    RIGHT: 68, // S
+    DOWN: 83   // D
 });
 
 // this is an enumeration for gameworld levels
@@ -67,6 +68,18 @@ window.onload = () => {
     setupEvents();
     health.innerHTML = `${currentHealth}/${totalHealth}`;
     score.innerHTML = currentScore;
+
+    let testString = "";
+
+    console.log("here");
+    for (let row = 0; row < 20; row++) {
+        for (let col = 0; col < currentGameWorld[row].length; col++) {
+            testString += currentGameWorld[row][col] + " ";
+        }
+        console.log(testString);
+        testString += "\n";
+    }
+    document.querySelector("#test").innerHTML = testString;
 }
 
 
@@ -116,6 +129,7 @@ function loadLevel(levelNum = 1, playerX = 6, playerY = 5) {
     }
 }
 
+/// Draw the grid based on the gamedata arrays
 function drawGrid(array) {
     const numCols = array[0].length;
     const numRows = array.length;
@@ -139,7 +153,7 @@ function drawGrid(array) {
                     break;
 
                 case worldTile.END:
-                    element.classList.add("water");
+                    element.classList.add("end");
                     break;
 
                 case worldTile.GROUND:
@@ -150,6 +164,7 @@ function drawGrid(array) {
     }
 }
 
+/// Draw the player and the game objects to the screen
 function drawGameObjects(array) {
     // player
     player.element.style.left = `${player.x * (cellWidth + cellSpacing)}px`;
@@ -192,41 +207,55 @@ function movePlayer(e) {
             if (checkIsLegalMove(nextX, nextY)) player.moveUp();
             break;
     }
+}
+/// Checking if move is allowed
+function checkIsLegalMove(nextX, nextY) {
+    let nextTile = currentGameWorld[nextY][nextX];
 
-    /// Checking if move is allowed
-    function checkIsLegalMove(nextX, nextY) {
-        let nextTile = currentGameWorld[nextY][nextX];
-        if (nextTile != worldTile.WALL && nextTile != worldTile.LOCKED && nextTile != worldTile.END) {
-            checkCollision(nextX, nextY);
-            return true;
-        }
-        else if (nextTile == worldTile.LOCKED) {
-            let key;
-            for (let obj of currentInventory) {
-                if (obj.type == "key") {
-                    key = obj;
-                    break;
-                }
-            }
+    // If next tile is a wall, locked, or the end
+    if (nextTile != worldTile.WALL && nextTile != worldTile.LOCKED && nextTile != worldTile.END) {
+        checkCollision(nextX, nextY);
+        return true;
+    }
 
-            if (!key) {
-                effectAudio.play();
-                return false;
-            }
-            else {
-                currentInventory.splice(currentInventory.indexOf(key.type), 1);
-                currentGameWorld[nextX, nextY] = 0;
-                inventory.removeChild(inventory.childNodes[findChildNode("key", "#inven")]);
+    // If the next tile is locked
+    else if (nextTile == worldTile.LOCKED) {
+        let key;
+        for (let obj of currentInventory) {
+            if (obj.type == "key") {
+                key = obj;
+                break;
             }
         }
-        else if (nextTile == worldTile.END){
-            currentLevelNumber += 1;
-            nextLevel();
-        }
-        else {
+
+        // If dont' have key
+        if (!key) {
             effectAudio.play();
             return false;
         }
+
+        // If have key
+        else {
+            currentInventory.splice(currentInventory.indexOf(key.type), 1);
+            console.log("NextX: " + nextX + "NextY: " + nextY + " Before: " + currentGameWorld[nextX][nextY]);
+            currentGameWorld[nextX][nextY] = 0;
+            console.log("NextX: " + nextX + "NextY: " + nextY + " After: " + currentGameWorld[nextX][nextY]);
+            inventory.removeChild(inventory.childNodes[findChildNode("key", "#inven")]);
+        }
+
+        console.log("NextX: " + nextX + "NextY: " + nextY + " Outside: " + currentGameWorld[nextX][nextY]);
+    }
+
+    // If the next tile is the end
+    else if (nextTile == worldTile.END) {
+        currentLevelNumber += 1;
+        nextLevel();
+    }
+
+    // If just floor
+    else {
+        effectAudio.play();
+        return false;
     }
 }
 
@@ -240,14 +269,9 @@ function setupEvents() {
 
     window.onkeydown = (e) => {
         //console.log("keydown=" + e.keyCode);
-
-        // checking for other keys
-        let char = String.fromCharCode(e.keyCode);
-        if (char == "p" || char == "P") {
-
-        }
-
         let enterKey = e.keyCode;
+
+        // If enter key is clicked
         if (enterKey == 13) {
             console.log("pring");
             pickUpItem();
@@ -257,6 +281,7 @@ function setupEvents() {
     };
 }
 
+/// Check where on the screen clicked
 function gridClicked(e) {
     let rect = container.getBoundingClientRect();
     let mouseX = e.clientX - rect.x;
@@ -269,6 +294,7 @@ function gridClicked(e) {
     console.log(`${col},${row}`);
 }
 
+/// Pick up item when 'enter'
 function pickUpItem() {
     let x = player.x;
     let y = player.y;
@@ -276,16 +302,24 @@ function pickUpItem() {
     let picked;
     let li = document.createElement("li");
 
+    // Loops through objects in current level
     for (let obj of levelObjects) {
+
+        // If the item is the same space as the player and not a monster
         if (player.x == obj.x && player.y == obj.y && obj.type != "monster") {
             li.innerHTML = obj.type;
             inventory.appendChild(li);
-            if (obj.type == "chest"){
+
+            // If item is chest, add score
+            if (obj.type == "chest") {
                 currentScore += 10;
             }
-            else if (obj.type == "treasure"){
+
+            // If item is treasure, add score
+            else if (obj.type == "treasure") {
                 currentScore += 5;
             }
+
             score.innerHTML = currentScore;
             // console.log(`Picked up: ${obj.type}`);
             // console.log(`${obj.x} , ${obj.y}`);
@@ -294,6 +328,7 @@ function pickUpItem() {
         }
     }
 
+    // If picked is null
     if (!picked) {
         console.log("nothing to pick");
         return;
@@ -310,6 +345,7 @@ function findChildNode(child, className) {
     let children;
     let childNode;
 
+    // Removing items from the screen
     if (className == ".gameObject") {
         children = document.querySelectorAll(className);
         for (let j = 0; j < children.length; j++) {
@@ -320,6 +356,7 @@ function findChildNode(child, className) {
         }
     }
 
+    // Removing items from the inventory list
     else if (className == "#inven") {
         children = document.querySelector(className).childNodes;
         for (let j = 0; j < children.length; j++) {
@@ -337,6 +374,7 @@ function findChildNode(child, className) {
     return i;
 }
 
+/// Checks for collisions between the player and the monster
 function checkCollision(nextX, nextY) {
     for (let obj of currentGameObjects) {
         if (obj.x == nextX && obj.y == nextY && obj.type == "monster") {
@@ -348,7 +386,8 @@ function checkCollision(nextX, nextY) {
     }
 }
 
-function nextLevel(){
+/// Creates and draws the new level
+function nextLevel() {
     $('div#gameBlock').empty();
 
     currentGameWorld = gameworld["world" + currentLevelNumber];
@@ -362,4 +401,8 @@ function nextLevel(){
     effectAudio.volume = 0.2;
     setupEvents();
     health.innerHTML = `${currentHealth}/${totalHealth}`;
+}
+
+function gameOver() {
+
 }
