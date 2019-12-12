@@ -167,7 +167,7 @@ div.imgblock {
 
 /* -----GAME----- */
 
-section#gameArea{
+section#gameArea {
     display: grid;
     width: 960px;
     height: 640px;
@@ -179,7 +179,6 @@ section#gameArea{
     width: 100%;
 }
 
-
 /* UI Styles */
 
 div#gameBlock {
@@ -189,6 +188,21 @@ div#gameBlock {
     z-index: 0;
     grid-area: gameScreen;
     /* underneath everything */
+}
+
+.gameButton {
+    font-size: xx-large;
+    text-align: center;
+    transition-duration: 0.4s;
+    background-color: white;
+    color: black;
+    border: 2px solid #555555;
+}
+
+.gameButton:hover {
+    background-color: #555555;
+    ;
+    color: white;
 }
 
 #gameInfo {
@@ -289,14 +303,16 @@ span.chest1 {
     position: absolute;
     left: -100px;
     top: -100px;
-    background-position: -1088px -288px;
+    background-position: -831px -450px;
+    /* 26 x 14 */
 }
 
-span.key1{
+span.key1 {
     position: absolute;
     left: -100px;
     top: -100px;
     background-position: -1024px -448px;
+    /* 32 x 14 */
 }
 
 span.monster1 {
@@ -305,7 +321,8 @@ span.monster1 {
     top: -100px;
     z-index: 500;
     /* layered between other game objects and player */
-    background-position: -96px -32px;
+    background-position: -800px -128px;
+    /* 25 x 4 */
 }
 
 span.monster2 {
@@ -314,7 +331,8 @@ span.monster2 {
     top: -100px;
     z-index: 500;
     /* layered between other game objects and player */
-    background-position: -192px -128px;
+    background-position: -704px -160px;
+    /* 22 x 5 */
 }
 
 span.monster3 {
@@ -323,14 +341,16 @@ span.monster3 {
     top: -100px;
     z-index: 500;
     /* layered between other game objects and player */
-    background-position: -192px -224px;
+    background-position: -320px -224px;
+    /* 10 x 7 */
 }
 
 /* player style */
 
 span.player {
     background: url(../images/nethack-32x32.png);
-    background-position: -96px -96px;
+    background-position: -928px -192px;
+    /* 29 x 6 */
     z-index: 1000;
     /* On top of everything */
     transition-property: all;
@@ -342,13 +362,15 @@ span.ring1 {
     left: -100px;
     top: -100px;
     background-position: -320px -448px;
+    /* 10 x 14 */
 }
 
 span.treasure1 {
     position: absolute;
     left: -100px;
     top: -100px;
-    background-position: -448px -448px;
+    background-position: -608px -448px;
+    /* 19 x 14 */
 }
 
 span.treasure2 {
@@ -356,4 +378,5 @@ span.treasure2 {
     left: -100px;
     top: -100px;
     background-position: -928px -448px;
+    /* 29 x 14 */
 }

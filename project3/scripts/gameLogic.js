@@ -8,8 +8,11 @@ const container = document.querySelector("#gameBlock");
 const inventory = document.querySelector("#inven");
 const health = document.querySelector("#health").querySelector("p");
 const score = document.querySelector("#score").querySelector("p");
-const test = document.querySelector("#test").querySelector("p");
+const highScore = document.querySelector("#highScore").querySelector("p");
 const cells = []; // the HTML elements - our "view"
+
+const prefix = "IGME235Project3-";
+const scoreKey = prefix + "highScore"
 
 // faking an enumeration here
 const keyboard = Object.freeze({
@@ -34,10 +37,11 @@ const worldTile = Object.freeze({
 let effectAudio = undefined;
 
 // level data is over in gamedata.js
-let currentLevelNumber = 1;
+let currentLevelNumber = 0;
 let currentHealth = 100;
 let currentScore = 0;
 let totalScore = 0;
+let totalHighScore;
 let currentGameWorld = undefined;   // a 2D array - the grid:  walls, floors, water, etc...
 let currentGameObjects = undefined; // a 1D array - stuff that's on top of the grid and can move: monsters, treasure, keys, etc...
 let currentInventory = undefined;   // a 1D array - stuff that the player has picked up
@@ -56,30 +60,26 @@ const player = Object.seal({
 
 // II. INIT code
 window.onload = () => {
-    currentGameWorld = gameworld["world" + currentLevelNumber];
-    let numCols = currentGameWorld[0].length;
-    let numRows = currentGameWorld.length;
-    createGridElements(numRows, numCols);
-    drawGrid(currentGameWorld);
-    loadLevel(currentLevelNumber);
-    drawGameObjects(currentGameObjects);
-    effectAudio = document.querySelector("#effectAudio");
-    effectAudio.volume = 0.2;
-    setupEvents();
-    health.innerHTML = `${currentHealth}/${totalHealth}`;
-    score.innerHTML = currentScore;
-
-    let testString = "";
-
-    console.log("here");
-    for (let row = 0; row < 20; row++) {
-        for (let col = 0; col < currentGameWorld[row].length; col++) {
-            testString += currentGameWorld[row][col] + " ";
-        }
-        console.log(testString);
-        testString += "\n";
+    const storedHighScore = localStorage.getItem(scoreKey);
+    if (storedHighScore) {
+        highScore.innerHTML = storedHighScore;
+        totalHighScore = storedHighScore;
     }
-    document.querySelector("#test").innerHTML = testString;
+    else {
+        highScore.innerHTML = currentScore;
+        totalHighScore = currentScore;
+    }
+
+    let btn = document.createElement("button");   // Create a <button> element
+    btn.innerHTML = "Start Game";                   // Insert text
+    btn.id = "startGame";
+    btn.className = "gameButton";
+    container.appendChild(btn);
+
+    $("#startGame").click(function () {
+        currentLevelNumber += 1;
+        nextLevel();
+    });
 }
 
 
@@ -108,8 +108,9 @@ function loadLevel(levelNum = 1, playerX = 6, playerY = 5) {
     node.className = "gameObject";
 
     // now initialize our player
-    player.x = 6;
-    player.y = 5;
+    const playerPosition = playerStart["level" + levelNum];
+    player.x = playerPosition[0].x;
+    player.y = playerPosition[0].y;
     player.element = node.cloneNode(true);
     player.element.classList.add("player");
     container.appendChild(player.element);
@@ -237,19 +238,20 @@ function checkIsLegalMove(nextX, nextY) {
         // If have key
         else {
             currentInventory.splice(currentInventory.indexOf(key.type), 1);
-            console.log("NextX: " + nextX + "NextY: " + nextY + " Before: " + currentGameWorld[nextX][nextY]);
-            currentGameWorld[nextX][nextY] = 0;
-            console.log("NextX: " + nextX + "NextY: " + nextY + " After: " + currentGameWorld[nextX][nextY]);
+            currentGameWorld[nextY][nextX] = 0;
             inventory.removeChild(inventory.childNodes[findChildNode("key", "#inven")]);
         }
-
-        console.log("NextX: " + nextX + "NextY: " + nextY + " Outside: " + currentGameWorld[nextX][nextY]);
     }
 
     // If the next tile is the end
     else if (nextTile == worldTile.END) {
         currentLevelNumber += 1;
-        nextLevel();
+        if (gameworld["world" + currentLevelNumber]) {
+            nextLevel();
+        }
+        else {
+            noNextLevel();
+        }
     }
 
     // If just floor
@@ -273,7 +275,6 @@ function setupEvents() {
 
         // If enter key is clicked
         if (enterKey == 13) {
-            console.log("pring");
             pickUpItem();
         }
         movePlayer(e);
@@ -282,6 +283,7 @@ function setupEvents() {
 }
 
 /// Check where on the screen clicked
+/*
 function gridClicked(e) {
     let rect = container.getBoundingClientRect();
     let mouseX = e.clientX - rect.x;
@@ -292,7 +294,7 @@ function gridClicked(e) {
     let selectedCell = cells[row][col];
     // selectedCell.classList.add('cellSelected');
     console.log(`${col},${row}`);
-}
+} */
 
 /// Pick up item when 'enter'
 function pickUpItem() {
@@ -307,8 +309,6 @@ function pickUpItem() {
 
         // If the item is the same space as the player and not a monster
         if (player.x == obj.x && player.y == obj.y && obj.type != "monster") {
-            li.innerHTML = obj.type;
-            inventory.appendChild(li);
 
             // If item is chest, add score
             if (obj.type == "chest") {
@@ -318,6 +318,11 @@ function pickUpItem() {
             // If item is treasure, add score
             else if (obj.type == "treasure") {
                 currentScore += 5;
+            }
+
+            if (obj.type != "chest" && obj.type != "treasure") {
+                li.innerHTML = obj.type;
+                inventory.appendChild(li);
             }
 
             score.innerHTML = currentScore;
@@ -330,7 +335,6 @@ function pickUpItem() {
 
     // If picked is null
     if (!picked) {
-        console.log("nothing to pick");
         return;
     }
 
@@ -370,7 +374,6 @@ function findChildNode(child, className) {
     while ((childNode = childNode.previousSibling) != null) {
         i++
     }
-    console.log(i);
     return i;
 }
 
@@ -381,7 +384,10 @@ function checkCollision(nextX, nextY) {
             effectAudio.play();
             currentHealth -= 20;
             health.innerHTML = `${currentHealth}/${totalHealth}`;
-            console.log("monster");
+
+            if (currentHealth == 0) {
+                gameOver();
+            }
         }
     }
 }
@@ -404,5 +410,55 @@ function nextLevel() {
 }
 
 function gameOver() {
+    $('div#gameBlock').empty();
+    currentInventory = [];
+    $('#inven').empty();
 
+    if (currentScore > totalHighScore) {
+        localStorage.setItem(scoreKey, currentScore);
+        totalHighScore = currentScore;
+        highScore.innerHTML = totalHighScore;
+    }
+
+    currentScore = 0;
+
+    let btn = document.createElement("button");   // Create a <button> element
+    btn.innerHTML = "Start Over";                   // Insert text
+    btn.id = "startGame";
+    btn.className = "gameButton";
+    container.appendChild(btn);
+
+    $("#startGame").click(function () {
+        currentLevelNumber = 1;
+        nextLevel();
+    });
+}
+
+function noNextLevel() {
+    $('div#gameBlock').empty();
+    currentInventory = [];
+    $('#inven').empty();
+
+    if (currentScore > totalHighScore) {
+        localStorage.setItem(scoreKey, currentScore);
+        totalHighScore = currentScore;
+        highScore.innerHTML = totalHighScore;
+    }
+
+    currentScore = 0;
+
+    let p = document.createElement("p");
+    p.innerHTML = "More levels to come";
+    container.appendChild(p);
+
+    let btn = document.createElement("button");   // Create a <button> element
+    btn.innerHTML = "Start Over";                   // Insert text
+    btn.id = "startGame";
+    btn.className = "gameButton";
+    container.appendChild(btn);
+
+    $("#startGame").click(function () {
+        currentLevelNumber = 1;
+        nextLevel();
+    });
 }
