@@ -184,3 +184,11 @@ div.imgblock {
     margin-left: auto;
     margin-right: auto;
 }
+
+/* -----Portfolio Images----- */
+#portfolioImg {
+	width: 100%;
+	max-width: 200px;
+	margin-left: auto;
+	margin-right: auto;
+}
