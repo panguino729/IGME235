@@ -70,7 +70,7 @@
         <div class="card-deck">
             <!-- -----GAUNTLET REMAKE----- -->
             <div class="card">
-                <img class="card-img-top" src="images/Scientist.png" alt="Card image cap">
+                <img class="card-img-top" src="images/guantletUI.png" alt="Gauntlet Remake scientist sprite">
                 <div class="card-body">
                     <h5 class="card-title">Gauntlet Remake</h5>
                     <p class="card-text">Space themed Gauntlet reamke - Characters, GUI</p>
@@ -84,7 +84,7 @@
             </div>
             <!-- -----SAKANA----- -->
             <div class="card">
-                <img class="card-img-top" src="images/Spacesuit.png" alt="Card image cap">
+                <img class="card-img-top" src="images/SakanaScreenshot.png" alt="Sakana gameplay screenshot of the water and the fishing rod">
                 <div class="card-body">
                     <h5 class="card-title">Sakana</h5>
                     <p class="card-text">Japanese style fly fishing in VR - Sound, Lantern</p>
@@ -123,6 +123,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
+					<img src="images/Scientist.png" alt="scientist">
                     <img src="images/Spacesuit.png" alt="spacesuit">
                 </div>
                 <div class="modal-footer">
@@ -161,7 +162,9 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <img src="images/Spacesuit.png" alt="spacesuit">
+                    <img src="images/HatQuestMainCharacterSprite.png" alt="Hat Quest main character sprite, Ellion; blond hair elf in green clothes">
+					<img src="images/HatQuestAlienSprite.png" alt="Hat Quest alien sprite; green">
+					<img src="images/HatQuestCutleryHat.png" alt="Hat Quest Cutlery hat; orange hat with two sporks ducktaped to it"
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
