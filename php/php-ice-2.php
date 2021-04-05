@@ -23,7 +23,7 @@
    	    "MCC"=>"http://www.monroecc.edu"];
 
         foreach($links as $key=>$value){
-   	        echo ("<li> <a href='$value'> $key</li>");
+   	        echo ("<li><a href='$value'>$key</li>");
         }
     ?>
     </ul>
